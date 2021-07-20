@@ -1,0 +1,44 @@
+Aqua Tail, 35, 40
+Body Slam, 35, 40
+Ice Punch, 35, 40
+Cross Chop, 35, 40
+Poison Fang, 35, 40
+Dragon Claw, 35, 40
+Power Up Punch, 35, 40
+Night Slash, 35, 40
+Shadow Punch, 35, 40
+Superpower, 40, 40
+Bubble Beam, 40, 40
+Aerial Ace, 45, 40
+Crunch, 45, 40
+Psystrike, 45, 40
+Ancient Power, 45, 40
+Avalanche,45, 40
+Wild Charge, 45, 40
+Close Combat, 45, 40
+Rock Slide, 45, 40
+Sky Attack, 45, 40
+Foul Play, 45, 40
+Dark Pulse, 50, 40
+Sludge Bomb, 50, 40
+Grass Knot, 50, 40
+Flame Charge, 50, 40
+Power Whip, 50, 40
+Dragon Pulse, 50, 40
+Earth Power, 55, 40
+Brave Bird, 55, 40
+Ice Beam, 55, 40
+Psychic, 55, 40
+Stone Edge, 55, 40
+Flame Thrower, 55, 40
+Shadow Ball, 55, 40
+Outrage, 60, 40
+Play Rough, 60, 40
+Bulldoze, 60, 40
+Thunder, 60, 40
+Earthquake, 65, 40
+Return, 70, 40
+Gunk Shot, 75, 40
+Focus Blast, 75, 40
+Hydro Pump, 75, 40
+

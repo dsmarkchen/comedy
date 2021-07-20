@@ -1,0 +1,201 @@
+.blocker
+{
+  display: block;
+  width: 100px;
+  height: 100px;
+  background: red;
+  margin: 10px;
+}
+.sss {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  width: 80px;
+  height: 80px;
+  margin: 0 0.5rem;
+  border-radius: 50%;
+  cursor: pointer;
+  font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+  font-size: 2.5rem;
+  text-decoration: none;
+  transition: all 0.15s ease;
+
+  &:hover {
+    color: #fff;
+
+    .tooltip {
+      visibility: visible;
+      opacity: 1;
+      transform: translate(-50%, -150%);
+    }
+  }
+
+  &:active {
+    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5) inset;
+  }
+
+  i {
+    position: relative;
+    top: 1px;
+  }
+}
+ 
+.tooltip
+{
+  position: absolute;
+  display: block;
+  width: auto;
+  height: auto;
+  padding: 5px;
+  color: yellow;
+  background: black;
+  z-index: 5000;
+}
+
+#tooltip
+{
+    text-align: center;
+    color: white;
+    font-family: "Helvetica", "Arial", sans-serif;
+    font-size: 16px;
+    line-height: 30px;
+
+    background: #6c757d;
+    position: absolute;
+    z-index: 100;
+    padding: 15px;
+}
+ 
+    #tooltip:after /* triangle decoration */
+    {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-top: 10px solid #6c757d;
+        content: '';
+        position: absolute;
+        left: 50%;
+        bottom: -10px;
+        margin-left: -10px;
+    }
+ 
+        #tooltip.top:after
+        {
+            border-top-color: transparent;
+            border-bottom: 10px solid #6b8048;
+            top: -20px;
+            bottom: auto;
+        }
+ 
+        #tooltip.left:after
+        {
+            left: 10px;
+            margin: 0;
+        }
+ 
+        #tooltip.right:after
+        {
+            right: 10px;
+            left: auto;
+            margin: 0;
+        }
+
+
+table {
+  table-layout: fixed;
+  width: 100%;
+  padding: 0;
+ }
+
+.bs-example{
+    	margin: 20px;
+}
+pre.canto{
+  text-align:left;
+  margin-bottom:0em;
+}
+p.canto{
+  text-align:left;
+    color: #4a5256;
+/*    font-family: "Palatino Linotype", "Times New Roman", Times, serif;
+  */   
+
+    display: block;
+font-size: 12px;
+    line-height: 24px;
+    margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+p.line{
+    display: block;
+    font-size: 10px;
+    margin-block-start: 0.1em;
+    margin-block-end: 0.1em;
+  overflow: hidden;
+  text-align:right;
+
+
+}
+ 
+table tr td.canto
+{
+ text-align:right;
+ width: 68.2% ;
+ padding: 5px;
+}
+table tr td.line
+{
+ text-align:right;
+ width: 31.8% ;
+ padding: 5px;
+}
+
+
+body {
+  min-height: 75rem;
+  padding-top: 4.5rem;
+}
+
+.jumbotron {
+  background-size: cover;
+  background-attachment: fixed;
+  background-position: 10% 0%;
+  padding: 200px 0 280px 0;
+  position: relative;
+}
+.jumbotron:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to left, #322e40, #0c2f52);
+  /*background: linear-gradient(to left, #8b86a3, #322e40); */
+  opacity: 0.85; 
+}
+.jumbotron .block {
+  color: #E3E3E4;
+}
+.jumbotron .block h1 {
+  font-family: 'Roboto', sans-serif;
+  font-weight: 100;
+  font-size: 45px;
+  line-height: 60px;
+  letter-spacing: 10px;
+  padding-bottom: 45px;
+}
+.jumbotron .block p {
+  font-size: 23px;
+  line-height: 40px;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 300;
+  letter-spacing: 3px;
+}
+

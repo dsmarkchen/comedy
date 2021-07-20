@@ -1,0 +1,32 @@
+{
+  "name": "comedyapp",
+  "version": "0.0.0",
+  "dependencies": {
+    "angular": "^1.6.9",
+    "jquery": "3.4.1",
+    "components-font-awesome": "4.2.0",
+    "ionicons-min": "2.0.1",
+    "popper.js": "1.15.0",
+    "bootstrap": "3.3.0",
+    "angular-animate": "^1.6.9",
+    "angular-cookies": "^1.6.9",
+    "angular-resource": "^1.6.9",
+    "angular-route": "^1.6.9",
+    "angular-sanitize": "^1.6.9",
+    "angular-touch": "^1.6.9"
+  },
+  "devDependencies": {
+    "angular-mocks": "^1.6.9"
+  },
+  "appPath": "app",
+  "moduleName": "comedyApp",
+  "overrides": {
+    "bootstrap": {
+      "main": [
+        "less/bootstrap.less",
+        "dist/css/bootstrap.css",
+        "dist/js/bootstrap.js"
+      ]
+    }
+  }
+}
