@@ -237,6 +237,38 @@ angular
     });
   };
 })
+.directive("owlCarousel", function() {
+	return {
+		restrict: 'E',
+		transclude: false,
+		link: function (scope) {
+			scope.initCarousel = function(element) {
+			  // provide any default options you want
+				var defaultOptions = {
+				};
+				var customOptions = scope.$eval($(element).attr('data-options'));
+				// combine the two options objects
+				for(var key in customOptions) {
+					defaultOptions[key] = customOptions[key];
+				}
+				// init carousel
+				$(element).owlCarousel(defaultOptions);
+			};
+		}
+	};
+})
+.directive('owlCarouselItem', function() {
+	return {
+		restrict: 'A',
+		transclude: false,
+		link: function(scope, element) {
+		  // wait for the last item in the ng-repeat then call init
+			if(scope.$last) {
+				scope.initCarousel(element.parent());
+			}
+		}
+	};
+})
  .config(['$routeProvider', function ($routeProvider, $routeParams) {
     $routeProvider
        .when('/', {
@@ -244,7 +276,7 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/charge/', {
+      .when('/comedy/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         controllerAs: 'main'
@@ -254,33 +286,12 @@ angular
         controller: 'MainCtrl',
         controllerAs: 'main'
       })
-      .when('/charge/main', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
+       .when('/comedy/about', {
+        templateUrl: 'views/about.html',
+        controller: 'AboutCtrl',
+        controllerAs: 'about'
       })
-       .when('/charge/charge', {
-        templateUrl: 'views/charge.html',
-        controller: 'ChargeCtrl',
-        controllerAs: 'charge'
-      })
-      .when('/charge', {
-        templateUrl: 'views/charge.html',
-        controller: 'ChargeCtrl',
-        controllerAs: 'charge'
-      })
-
-      .when('/charge/rx', {
-        templateUrl: 'views/rx.html',
-        controller: 'RxCtrl',
-        controllerAs: 'rx'
-      })
-      .when('/rx', {
-        templateUrl: 'views/rx.html',
-        controller: 'RxCtrl',
-        controllerAs: 'rx'
-      })
-       .when('/about', {
+      .when('/about', {
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl',
         controllerAs: 'about'
