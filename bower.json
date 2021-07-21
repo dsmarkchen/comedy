@@ -5,7 +5,6 @@
     "jquery": "1.10.2",
     "angular": "^1.6.9",
     "components-font-awesome": "4.2.0",
-    "ionicons-min": "2.0.1",
     "popper.js": "1.15.0",
     "bootstrap": "3.3.0",
     "angular-animate": "^1.6.9",
