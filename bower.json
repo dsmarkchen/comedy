@@ -2,8 +2,8 @@
   "name": "comedyapp",
   "version": "0.0.0",
   "dependencies": {
-    "angular": "^1.6.9",
     "jquery": "3.4.1",
+    "angular": "^1.6.9",
     "components-font-awesome": "4.2.0",
     "ionicons-min": "2.0.1",
     "popper.js": "1.15.0",
