@@ -6,7 +6,7 @@
     "angular": "^1.6.9",
     "components-font-awesome": "4.2.0",
     "popper.js": "1.15.0",
-    "bootstrap": "3.3.0",
+    "bootstrap": "4.3.1",
     "angular-animate": "^1.6.9",
     "angular-cookies": "^1.6.9",
     "angular-resource": "^1.6.9",

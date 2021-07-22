@@ -45,28 +45,25 @@
       <div class="row">
         <div class="col-md-12">
           <!-- header Nav Start -->
-          <nav class="navbar navbar-default">
-            <div class="container-fluid">
-              <!-- Brand and toggle get grouped for better mobile display -->
-              <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar">a</span>
-                  <span class="icon-bar">b</span>
-                  <span class="icon-bar">c</span>
-                </button>
-                <a class="navbar-brand" href="#!main">
-                  <img src="images/logo.png" alt="Logo">
-                </a>
-              </div>
-              <!-- Collect the nav links, forms, and other content for toggling -->
-              <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                  <li><a href="#!main">Home</a></li>
-                  <li><a href="#!about">About</a></li>
-                </ul>
-              </div><!-- /.navbar-collapse -->
-            </div><!-- /.container-fluid -->
+          <nav class="navbar navbar-light bg-light">
+            <a class="navbar-brand" href="#!/main">
+              <img src="images/logo.png" alt="Logo">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#!/main">Home <span class="sr-only">(current)</span></a>
+                </li>
+                
+                <li class="nav-item">
+                  <a class="nav-link" href="#!/about">About</a>
+                </li>
+
+              </ul>
+            </div>
           </nav>
         </div>
       </div>
@@ -97,10 +94,10 @@
   <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
   <script>
     !function (A, n, g, u, l, a, r) {
-    A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
-      (A[l].q = A[l].q || []).push(arguments)
-    }, A[l].l = +new Date, a = n.createElement(g),
-      r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
+      A.GoogleAnalyticsObject = l, A[l] = A[l] || function () {
+        (A[l].q = A[l].q || []).push(arguments)
+      }, A[l].l = +new Date, a = n.createElement(g),
+        r = n.getElementsByTagName(g)[0], a.src = u, r.parentNode.insertBefore(a, r)
     }(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
     ga('create', 'UA-XXXXX-X');
@@ -122,7 +119,7 @@
   <!-- endbower -->
   <!-- endbuild -->
   <!-- build:js({.tmp,app}) scripts/scripts.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script> 
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
   <script src="scripts/owl.carousel.min.js"></script>
   <script src="scripts/app.js"></script>
   <script src="scripts/controllers/main.js"></script>
@@ -134,29 +131,29 @@
 
     $(document).ready(function () {
 
-      
+
       $("#testimonial-slider").owlCarousel({
-            paginationSpeed : 500,
-            singleItem:true,
-            autoPlay: 3000,
-        });
+        paginationSpeed: 500,
+        singleItem: true,
+        autoPlay: 3000,
+      });
 
 
 
 
-        $("#clients-logo").owlCarousel({
-          autoPlay: 3000,
-          items : 5,
-          itemsDesktop : [1199,5],
-          itemsDesktopSmall : [979,5],
-        });
+      $("#clients-logo").owlCarousel({
+        autoPlay: 3000,
+        items: 5,
+        itemsDesktop: [1199, 5],
+        itemsDesktopSmall: [979, 5],
+      });
 
-        $("#works-logo").owlCarousel({
-          autoPlay: 3000,
-          items : 5,
-          itemsDesktop : [1199,5],
-          itemsDesktopSmall : [979,5],
-        });
+      $("#works-logo").owlCarousel({
+        autoPlay: 3000,
+        items: 5,
+        itemsDesktop: [1199, 5],
+        itemsDesktopSmall: [979, 5],
+      });
 
       $("#lion").tooltip();
       //           $("#myTooltips p").tooltip({container: ".wrapper"});
