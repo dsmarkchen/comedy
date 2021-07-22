@@ -67,8 +67,8 @@ angular.module('comedyApp')
 
 
         $scope.feed = function () {
-            var base = 'http:/dsmarkchen.github.io/comedy/'; 
-            var url = base + '/data/' + $scope.opt + '.txt';
+            var base = 'https://dsmarkchen.github.io/comedy/'; 
+            var url = base + 'data/' + $scope.opt + '.txt';
 
             
             
