@@ -2,15 +2,15 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12">
-        <data-owl-carousel class="about-carousel owl-carousel" data-options="{navigation: false, pagination: true, singleItem: true, rewindNav : false, autoPlay: 3000}">
+        <data-owl-carousel class="about-carousel owl-carousel" data-options="{navigation: false, pagination: true, singleItem: true, rewindNav : false}">
           <div owl-carousel-item="" ng-repeat="item in ::items2 track by $index" class="owl-item">
             <div>
               <div class="user">
-                  <img src="images/item-img1.jpg" alt="People">
+                  <img src="images/item-img2.jpg" alt="People">
 
-                  <h2>{{users[$index]}}</h2>
+                  <h2>{{item.name}}</h2>
               </div>
-              <p>This company created an e-commerce site with the tools to make our business a success, with innovative ideas. We feel that our site has unique elements that make us stand out from the crowd.</p>
+              <p>{{item.text}}</p>
             </div>
           </div>
         </data-owl-carousel>

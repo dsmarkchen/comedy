@@ -6,13 +6,17 @@
     text-align:center;
     width: 100%;
     border: 1px solid #DEDEDE;
+    padding: 24px;
     margin: 0 auto;
 }
 
 #about .about-carousel p {
-  line-height: 28px;
-  font-weight: 300;
-  padding-bottom: 20px;
+    text-align:left;
+    font-size: 18px;
+    line-height: 34px;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
 }
 
 #about .about-carousel .user img {
@@ -21,7 +25,8 @@
 }
 
 #about .about-carousel .user h2 {
-    color: #5c0000;
+    color: #353241;
+    font-weight: 600;
 }
 
 .blocker

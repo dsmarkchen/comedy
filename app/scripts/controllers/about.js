@@ -9,7 +9,13 @@
  */
 angular.module('comedyApp')
   .controller('AboutCtrl', function ($scope, ivService, fileReader) {
-   $scope.items2 = [1, 2, 3, 4];
+   $scope.items2 = [
+        {name: "Inferno", 
+         text: "the misery of the spirit bound to the prides and actions of the flash"}, 
+        {name: "Purgatorio",
+         text: "the process of transmuting fleshly into spiritual experience"}, 
+        {name: "Paradiso",
+         text: "the degrees of spiritual realization"}, ];
    $scope.users = ["joseph", "james", "joseph 22 ","joseph"]; 
    $scope.comments = ["comment 1", "comment2", "", ""]; 
 
