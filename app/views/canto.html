@@ -3,56 +3,59 @@
 
     <div class="row">
 
-      <div class="col-3">
-        <form>
-          <label class="radio-inline">
-            <input type="radio" ng-model="opt" value="inferno" ng-change="change()">inferno
-          </label>
-          <label class="radio-inline">
-            <input type="radio" ng-model="opt" value="purgatorio" ng-change="change()">purgatorio
-          </label>
-          <label class="radio-inline">
-            <input type="radio" ng-model="opt" value="paradiso" ng-change="change()">Paradiso
-          </label>          
-        </form>
+      <div class="col-md-3">
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" ng-model="opt" value="inferno" ng-change="change()">
+          <label class="form-check-label">inferno</label>
         </div>
 
-      <div class="col-3">
-        <form>
-          <div class="form-group">
-            <div class="input-group">
-              <div class="input-group-addon"><i class="fa fa-search"></i></div>
-              <input type="text" class="form-control" placeholder="query: start, end" ng-model="myQuery">
-            </div>
-          </div>
-        </form>
-        <button class="btn btn-secondary" ng-click="prev()"> prev</button>
-        <button class="btn btn-secondary" ng-click="next()"> next</button>
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" ng-model="opt" value="purgatorio" ng-change="change()">
+          <label class="form-check-label">purgatorio</label>
+        </div>
 
+        <div class="form-check form-check-inline">
+          <input class="form-check-input" type="radio" ng-model="opt" value="paradiso" ng-change="change()">
+          <label class="form-check-label">paradiso</label>
+        </div>
+
+      
+
+      
+        
       </div>
         
         
 
-        <div class="col-md-6">
+        <div class="canto-outline col-md-6">
 
 
-          <div ng-repeat="canto in lines | myCantoFilter: myQuery  track by $index ">
+          <div class="" ng-repeat="canto in lines | myCantoFilter: myQuery  track by $index ">
             <div class="row" ng-if='canto.visible'>
               <div class="col-1" style="margin:0px 0px 0px 0px;padding:0px 0px; border: 1px solid #f8f9fa;">
                 <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{canto.name}}:{{canto.line}} </p>
               </div>
-              <div class="col-11" style="padding-left:1px;padding-right:1px">
-                <!--
-                <div xelement>
-                  <p ng-if="elementSize.width > 100 && $index == 0" >The element width: {{elementSize.width}}.</p>
-                </div>
-            -->
-
-                <p class="canto" style="background-color:lavender;margin-left:0;width:100%;" ng-bind-html='canto.text'></p>
+              <div class="col-11" style="padding-left:1px;padding-right:1px">                
+                <p class="canto" ng-bind-html='canto.text'></p>
               </div>
             </div>
           </div>
 
+        </div>
+
+        <div class="col-md-3">
+          <form>
+            <div class="form-group row">
+
+              <div class="input-group-addon col-sm-1"><i class="fa fa-search"></i></div>
+              <input type="text" class="form-control col-sm-9 offset-sm-1" placeholder="query: start, end" ng-model="myQuery">
+
+            </div>
+          </form>
+          <div class="row">
+            <button class="btn btn-secondary col-sm-3 offset-sm-1" ng-click="prev()"> prev</button>
+            <button class="btn btn-secondary col-sm-3 offset-sm-1" ng-click="next()"> next</button>
+          </div>
         </div>
       </div>
     </div>
