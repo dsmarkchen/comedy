@@ -259,7 +259,12 @@ angular
         controller: 'AboutCtrl',
         controllerAs: 'about'
       })
-      .otherwise({
+      .when('/canto', {
+        templateUrl: 'views/canto.html',
+        controller: 'CantoCtrl',
+        controllerAs: 'canto'
+      })
+       .otherwise({
         redirectTo: '/'
       });
      // $locationProvider.html5Mode(true);
