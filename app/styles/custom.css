@@ -1,3 +1,29 @@
+#about {
+    padding: 100px 0;
+
+}
+#about .about-carousel {
+    text-align:center;
+    width: 100%;
+    border: 1px solid #DEDEDE;
+    margin: 0 auto;
+}
+
+#about .about-carousel p {
+  line-height: 28px;
+  font-weight: 300;
+  padding-bottom: 20px;
+}
+
+#about .about-carousel .user img {
+   border-radius:500px;
+   margin:10px; 
+}
+
+#about .about-carousel .user h2 {
+    color: #5c0000;
+}
+
 .blocker
 {
   display: block;

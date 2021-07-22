@@ -1,14 +1,25 @@
-<div class="container">
-  <div class="row">
-     <div class="col-md-12">
-        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, singleItem: true, rewindNav : false, autoPlay: 3000}">
-          <div owl-carousel-item="" ng-repeat="item in ::items2 track by $index" class="">
-            <p>{{::item}}</p>
+<section id="about">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <data-owl-carousel class="about-carousel owl-carousel" data-options="{navigation: false, pagination: true, singleItem: true, rewindNav : false, autoPlay: 3000}">
+          <div owl-carousel-item="" ng-repeat="item in ::items2 track by $index" class="owl-item">
+            <div>
+              <div class="user">
+                  <img src="images/item-img1.jpg" alt="People">
+
+                  <h2>{{users[$index]}}</h2>
+              </div>
+              <p>This company created an e-commerce site with the tools to make our business a success, with innovative ideas. We feel that our site has unique elements that make us stand out from the crowd.</p>
+            </div>
           </div>
         </data-owl-carousel>
       </div>
-      </div>
-</div>
+    </div>
+  </div>
+
+
+</section>
 
 
 <section id="testimonial">
@@ -65,7 +76,7 @@
       <div class="col-md-6">
         <data-owl-carousel class="testimonial-carousel" data-options="{navigation: false, pagination: true, singleItem: true, autoHeight: true, rewindNav : false}">
 
-          <div owl-carousel-item="" ng-repeat="item in ::users track by $index" class="owl-item">
+          <div owl-carousel-item="" ng-repeat="item in ::users track by $index" class="block">
             <div>
               <img src="images/cotation.png" alt="IMG">
               <div class="user">
