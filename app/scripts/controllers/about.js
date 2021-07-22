@@ -9,7 +9,7 @@
  */
 angular.module('comedyApp')
   .controller('AboutCtrl', function ($scope, ivService, fileReader) {
-
+   $scope.items2 = [1, 2, 3, 4];
    $scope.users = ["joseph", "james", "joseph 22 ","joseph"]; 
    $scope.comments = ["comment 1", "comment2", "", ""]; 
 

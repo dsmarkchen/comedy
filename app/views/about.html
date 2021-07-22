@@ -1,6 +1,19 @@
+<div class="container">
+  <div class="row">
+     <div class="col-md-12">
+        <data-owl-carousel class="owl-carousel" data-options="{navigation: false, pagination: true, singleItem: true, rewindNav : false, autoPlay: 3000}">
+          <div owl-carousel-item="" ng-repeat="item in ::items2 track by $index" class="">
+            <p>{{::item}}</p>
+          </div>
+        </data-owl-carousel>
+      </div>
+      </div>
+</div>
+
+
 <section id="testimonial">
   <div class="container">
-    <div class="row">
+      <div class="row">
       <div class="col-md-6">
         <div class="block">
 
@@ -12,7 +25,7 @@
                 <span>Life Span</span>
               </div>
             </li>
-          
+
             <ul class="counter-box clearfix">
               <li>
                 <div class="block">
@@ -50,23 +63,23 @@
       </div>
 
       <div class="col-md-6">
-          <data-owl-carousel class="testimonial-carousel" data-options="{navigation: false, pagination: true, singleItem: true, autoHeight: true, rewindNav : false}">
+        <data-owl-carousel class="testimonial-carousel" data-options="{navigation: false, pagination: true, singleItem: true, autoHeight: true, rewindNav : false}">
 
-            <div owl-carousel-item="" ng-repeat="item in ::users track by $index" class="owl-item">
-              <div>
-                <img src="images/cotation.png" alt="IMG">
-                <div class="user">
-                  <img src="images/item-img1.jpg" alt="People">
-                  <p>This company created an e-commerce site with the tools to make our business a success, with innovative ideas. We feel that our site has unique elements that make us stand out from the crowd.</p>
-                  <p><span>{{::item}}</span></p>
-                </div>
+          <div owl-carousel-item="" ng-repeat="item in ::users track by $index" class="owl-item">
+            <div>
+              <img src="images/cotation.png" alt="IMG">
+              <div class="user">
+                <img src="images/item-img1.jpg" alt="People">
+                <p>This company created an e-commerce site with the tools to make our business a success, with innovative ideas. We feel that our site has unique elements that make us stand out from the crowd.</p>
+                <p><span>{{::item}}</span></p>
               </div>
             </div>
+          </div>
 
-          </data-owl-carousel>
-        </div>
+        </data-owl-carousel>
       </div>
-    </div>    
+    </div>
+  </div>    
 </section>
 
 
