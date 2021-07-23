@@ -1,0 +1,27 @@
+
+<section id="voyage">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="block">
+
+          <div class="voyage-menu">
+            <ul>
+              <li ng-repeat="item in items2 track by $index " ng-click="setCurrent($index)">{{item.name}}</li>
+            </ul>
+
+          </div>
+
+          <div class="voyage-content">
+            {{items2[current].text}}            
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+</section>
+
+
+
