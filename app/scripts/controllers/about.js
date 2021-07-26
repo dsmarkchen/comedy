@@ -8,7 +8,7 @@
  * Controller of the chargeApp
  */
 angular.module('comedyApp')
-  .controller('AboutCtrl', function ($scope, ivService, fileReader) {
+    .controller('AboutCtrl', function ($scope, ivService, fileReader) {
    $scope.items2 = [
         {name: "Inferno", 
          text: "the misery of the spirit bound to the prides and actions of the flash"}, 
