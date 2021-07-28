@@ -1,0 +1,26 @@
+<section id="notes">
+  <div class="container">
+
+
+
+    <div class="" ng-repeat="note in items track by $index ">
+      <div class="row">
+        <div class="col-3" style="margin:0px 0px 0px 0px;padding:0px 0px; border: 1px solid #f8f9fa;">
+          <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{note.book}} </p>
+        </div>
+        <div class="col-9" style="padding-left:1px;padding-right:1px">
+          <h4>{{note.keyword}} </h4>
+          <div class="preview" ng-bind-html='note.text  | markdown'></div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+
+
+</section>
+
+
+

@@ -9,9 +9,10 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-    .service('comedyService', function ($http) {        
+    .service('comedyService', function ($http, $log) {        
         var lines = [];
         var rawlines = [];
+
         var temp = [];
         var counter = 0;
         var opt = "inferno";
@@ -19,12 +20,12 @@ angular
         if (cmdyOpt != null) {
             opt = cmdyOpt;
         }
-
-        var cmdyRaws = localStorage.getItem("comedyRawlines");
+        $log.log("comedyService.opt: " + opt); 
+        var cmdyRaws = localStorage.getItem("comedyRawlines" + opt);
         if (cmdyRaws != null) {
             rawlines = cmdyRaws;
         }
-        var cmdyLines = localStorage.getItem("comedyLines");
+        var cmdyLines = localStorage.getItem("comedyLines" + opt);
         if (cmdyLines != null && cmdyLines != "") {
             lines = cmdyLines;
         }
@@ -69,13 +70,14 @@ angular
             if (lines.length > 0) {
                 lines.push({ line: counter - 1, text: rawlines.join('<br>') });
             }
-            localStorage.setItem("comedyLines", JSON.stringify(lines));
+            localStorage.setItem("comedyLines" + opt, JSON.stringify(lines));
         }
 
         return {
             opt: function (newopt) {
                 if (opt != newopt) {
-                    opt = newopt;                    
+                    opt = newopt;
+                    localStorage.setItem("comedyOpt", opt);
                 }
                 return opt;
             },
@@ -92,12 +94,12 @@ angular
                 var base = 'https://dsmarkchen.github.io/comedy/';
                 var url = base + 'data/' + opt + '.txt';
 
-                $http.get(url).then(function (rsp) {
+                var promise = $http.get(url).then(function (rsp) {
                     rawlines = rsp.data.split(/\r?\n/);
-                    localStorage.setItem("comedyRawlines", JSON.stringify(rawlines));
+                    localStorage.setItem("comedyRawlines" + opt, JSON.stringify(rawlines));
                     _makelines();
                 });
-
+                return promise;
             },
             rawlines: function (newLines) {
                 if (rawlines != newLines) {
@@ -106,8 +108,8 @@ angular
                 return rawlines;
             },
             feed: function (opt) {
-                feedme(opt);
-            },
+               return feedme(opt);
+            },            
         }
 
     
@@ -316,49 +318,54 @@ angular
 })
 .config(['$routeProvider', function ($routeProvider, $routeParams) {
     $routeProvider
-       .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/comedy/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-      .when('/main', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl',
-        controllerAs: 'main'
-      })
-       .when('/comedy/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/comedy/voyage', {
-        templateUrl: 'views/voyage.html',
-        controller: 'VoyageCtrl',
-        controllerAs: 'voyage'
-      })
-       .when('/voyage', {
-        templateUrl: 'views/voyage.html',
-        controller: 'VoyageCtrl',
-        controllerAs: 'voyage'
-      })
-       .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl',
-        controllerAs: 'about'
-      })
-      .when('/canto', {
-        templateUrl: 'views/canto.html',
-        controller: 'CantoCtrl',
-        controllerAs: 'canto'
-      })
-       .otherwise({
-        redirectTo: '/'
-      });
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'main'
+        })
+        .when('/comedy/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'main'
+        })
+        .when('/main', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl',
+            controllerAs: 'main'
+        })
+        .when('/comedy/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl',
+            controllerAs: 'about'
+        })
+        .when('/comedy/voyage', {
+            templateUrl: 'views/voyage.html',
+            controller: 'VoyageCtrl',
+            controllerAs: 'voyage'
+        })
+        .when('/voyage', {
+            templateUrl: 'views/voyage.html',
+            controller: 'VoyageCtrl',
+            controllerAs: 'voyage'
+        })
+        .when('/about', {
+            templateUrl: 'views/about.html',
+            controller: 'AboutCtrl',
+            controllerAs: 'about'
+        })
+        .when('/notes', {
+            templateUrl: 'views/notes.html',
+            controller: 'NotesCtrl',
+            controllerAs: 'notes'
+        })
+        .when('/canto', {
+            templateUrl: 'views/canto.html',
+            controller: 'CantoCtrl',
+            controllerAs: 'canto'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
      // $locationProvider.html5Mode(true);
 
   }]);

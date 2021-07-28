@@ -21,13 +21,12 @@ angular.module('comedyApp')
         }
         comedyService.opt($scope.opt);
 
-        var cmdylines = JSON.parse(localStorage.getItem("comedyLines"));
+        var cmdylines = JSON.parse(localStorage.getItem("comedyLines" + $scope.opt));
         if (cmdylines != null) {
             $scope.lines = cmdylines;
         }
         else {
-            var promise = comedyService.feedme();
-            promise.then(function success(rsp) {
+            comedyService.feedme().then(function success(rsp) {
                 $scope.lines = comedyService.lines;
             });
         }
@@ -100,6 +99,7 @@ angular.module('comedyApp')
 
         }    
         $scope.change = function () {
+            comedyService.opt($scope.opt);
             localStorage.setItem("myCantoOpt", $scope.opt);
         }
         $scope.getComedylines = function () {

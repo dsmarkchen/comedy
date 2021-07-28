@@ -9,42 +9,40 @@
  */
 angular.module('comedyApp')
     .controller('AboutCtrl', function ($scope, comedyService, fileReader) {
-   $scope.items2 = [
-        {name: "Inferno", 
-         text: "the misery of the spirit bound to the prides and actions of the flash"}, 
-        {name: "Purgatorio",
-         text: "the process of transmuting fleshly into spiritual experience"}, 
-        {name: "Paradiso",
-         text: "the degrees of spiritual realization"}, ];
-   $scope.users = ["joseph", "james", "joseph 22 ","joseph"]; 
-   $scope.comments = ["comment 1", "comment2", "", ""]; 
 
-
-   $scope.isNullOrEmpty = function (value) {
-        return value == null || value === "";
-   }
-   $scope.calcCP = function () {
-        var name = $scope.name
-        var atk = $scope.attack;
-        var def = $scope.defense;
-        var hp = $scope.hp;
-        var statProm = ivService.getStat(name);
+        $scope.opt = localStorage.getItem("comedyOpt");
+        if ($scope.opt == null) {
+            $scope.opt = "inferno";
+            localStorage.setItem("comedyOpt", $scope.opt);
+        }
         
-        var level = parseInt($scope.level); 
-        var iv = {
-            Atk: parseInt(atk),
-            Def: parseInt(def),
-            Hp: parseInt(hp)
-        }
-        var stat = {
-            Atk: 112,
-            Def: 152,
-            Hp: 225
-        }
-        $scope.cp = ivService.calculateCP(level, iv, stat);
-   }
+        $scope.items2 = [
+            {
+                name: "Inferno",
+                text: "the misery of the spirit bound to the prides and actions of the flash"
+            },
+            {
+                name: "Purgatorio",
+                text: "the process of transmuting fleshly into spiritual experience"
+            },
+            {
+                name: "Paradiso",
+                text: "the degrees of spiritual realization"
+            },];
+        $scope.users = ["joseph", "james", "joseph 22 ", "joseph"];
+        $scope.comments = ["comment 1", "comment2", "", ""]; 
 
-   $scope.getFile = function () {
+        $scope.change = function () {
+            comedyService.opt($scope.opt);
+            comedyService.lines([]);
+        }
+
+        $scope.isNullOrEmpty = function (value) {
+            return value == null || value === "";
+        }
+       
+
+        $scope.getFile = function () {
 
             fileReader.readAsText($scope.file, $scope)
                 .then(function (rsp) {
@@ -60,6 +58,7 @@ angular.module('comedyApp')
         };
 
         $scope.reset = function () {
+            comedyService.opt($scope.opt);
             comedyService.rawlines([]);
             comedyService.feedme();
             comedyService.makelines();

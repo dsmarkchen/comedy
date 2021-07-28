@@ -70,12 +70,29 @@
       </div>
 
       <div class="row">
-          <div class="col-md-6">
-            <form>
-              <b>Import Your Canto:</b>
-              <input type="file" ng-file-select="onFileSelect($files)" class="form-control-file border">
-            </form>
+        <div class="col-md-6">
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" ng-model="opt" value="inferno" ng-change="change()">
+            <label class="form-check-label">inferno</label>
           </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" ng-model="opt" value="purgatorio" ng-change="change()">
+            <label class="form-check-label">purgatorio</label>
+          </div>
+
+          <div class="form-check form-check-inline">
+            <input class="form-check-input" type="radio" ng-model="opt" value="paradiso" ng-change="change()">
+            <label class="form-check-label">paradiso</label>
+          </div>
+
+
+          <form>
+            <b>Import Your Canto:</b>
+            <input type="file" ng-file-select="onFileSelect($files)" class="form-control-file border">
+          </form>
+        </div>
           <div class="col-md-6">
             <form>
               <b>Reset:</b><br />
