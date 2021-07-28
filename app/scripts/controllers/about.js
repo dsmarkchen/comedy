@@ -8,7 +8,7 @@
  * Controller of the chargeApp
  */
 angular.module('comedyApp')
-    .controller('AboutCtrl', function ($scope, ivService, fileReader) {
+    .controller('AboutCtrl', function ($scope, comedyService, fileReader) {
    $scope.items2 = [
         {name: "Inferno", 
          text: "the misery of the spirit bound to the prides and actions of the flash"}, 
@@ -44,7 +44,57 @@ angular.module('comedyApp')
         $scope.cp = ivService.calculateCP(level, iv, stat);
    }
 
-  })
+   $scope.getFile = function () {
+
+            fileReader.readAsText($scope.file, $scope)
+                .then(function (rsp) {
+
+                    $scope.raw = rsp.split(/\r?\n/);
+                    localStorage.setItem("comedyRawlines", JSON.stringify($scope.raw));
+
+                    comedyService.rawlines($scope.raw);
+                    comedyService.makelines();
+                    console.log("getRaw " + $scope.raw);
+
+                });
+        };
+
+        $scope.reset = function () {
+            comedyService.rawlines([]);
+            comedyService.get();
+        }
+        $scope.$on("fileProgress", function (e, progress) {
+            $scope.progress = progress.loaded / progress.total;
+        });
+        $scope.$watch('comedyService.lines', function (newValue, oldValue) {
+            if (oldValue != newValue) {
+                $scope.lines = newValue;
+            }
+        });
+        $scope.$watch('comedyService.opt', function (newValue, oldValue) {
+            if (oldValue != newValue) {
+                $scope.opt = newValue;
+            }
+        });
+
+    })
+    .directive("ngFileSelect", function () {
+
+        return {
+            link: function ($scope, el) {
+
+                el.bind("change", function (e) {
+
+                    $scope.file = (e.srcElement || e.target).files[0];
+                    $scope.getFile();
+
+                });
+
+            }
+
+        };
+    })
+
  .factory("fileReader", function ($q, $log) {
 
         $log.log("fileReader"); 

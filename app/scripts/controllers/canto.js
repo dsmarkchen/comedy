@@ -8,15 +8,23 @@
  * Controller of the chargeApp
  */
 angular.module('comedyApp')
-    .controller('CantoCtrl', function ($scope, $http, fileReader) {
+    .controller('CantoCtrl', function ($scope, $http, comedyService, fileReader) {
+        $scope.lines = [];
+        
       $scope.myQuery = "1:1,25";
+        
 
-        $scope.opt = localStorage.getItem("myCantoOpt");
+        $scope.opt = localStorage.getItem("comedyOpt");
         if ($scope.opt == null) {
             $scope.opt = "inferno";
-            localStorage.setItem("myCantoOpt", $scope.opt);
+            localStorage.setItem("comedyOpt", $scope.opt);
         }
-
+        var cmdylines = JSON.parse(localStorage.getItem("comedyLines"));
+        if (cmdylines != null) {
+            $scope.lines = cmdylines;
+        }
+        comedyService.lines($scope.lines);
+        comedyService.opt($scope.opt);
 
       $scope.items2 = [
         {name: "Inferno", 
@@ -26,63 +34,9 @@ angular.module('comedyApp')
         {name: "Paradiso",
            text: "the degrees of spiritual realization"
        },];
-        $scope.lines = [];
-        var temp = [];
-        var counter = 0;
-      $scope.buildone = function (item, useBreaker) {
-          var withBreaker = ' ';
-          if (useBreaker) {
-              withBreaker = '<br>';
-          }
-          if (item.trim().length > 0) {
-              var exp = /^##/;
-              if (exp.test(item)) {
-                  if (temp.length > 0) {
-                      $scope.lines.push({
-                          name: name,
-                          line: counter,
-                          text: temp.join(withBreaker),
-                          visible: true
-                      });
-                      temp = [];
-                  }
-                  name = item.replace(/^## /, "");
-                  counter = 0;
-                  return;
-              }
-              var res = item.replace(/--/g, "&#x2012;");
-              temp.push(res.trim());
-              counter++;
-              if (temp.length == 3) {
-                  $scope.lines.push({
-                      name: name,
-                      line: counter - 2,
-                      text: temp.join(withBreaker),
-                      visible: true
-                  });
-                  temp = [];
-              }
-          }
-      }
-
-
-        $scope.feed = function () {
-            var base = 'https://dsmarkchen.github.io/comedy/'; 
-            var url = base + 'data/' + $scope.opt + '.txt';
-
-            
-            
-            $http.get(url).then(function (rsp) {
-                var lines = rsp.data.split(/\r?\n/);
-                for (var i = 0; i < lines.length; i++) {
-                    $scope.buildone(lines[i], true);
-                }
-                if (lines.length > 0) {
-                    $scope.lines.push({ line: counter - 1, text: lines.join('<br>') });
-                }
-            });
+        if ($scope.lines == null) {
+            comedyService.get();
         }
-        $scope.feed();
 
 
         var step = 3;
@@ -142,7 +96,27 @@ angular.module('comedyApp')
         $scope.change = function () {
             localStorage.setItem("myCantoOpt", $scope.opt);
         }
+        $scope.getComedylines = function () {
+            return comedyService.lines;
+        }
+        $scope.$watch('comedyService.rawlines', function (newValue, oldValue) {
+            if (oldValue != newValue) {
+                $scope.rawlines = newValue;                
+                localStorage.setItem("myRawlines", $scope.rawlines);
+            }
+        });
 
+
+        $scope.$watch('comedyService.lines', function (newValue, oldValue) {
+            if (oldValue != newValue) {
+                $scope.lines = newValue;
+            }            
+        });
+        $scope.$watch('comedyService.opt', function (newValue, oldValue) {
+            if (oldValue != newValue) {
+                $scope.opt = newValue;
+            }
+        });
 
   })
     .filter('myCantoFilter', function () {

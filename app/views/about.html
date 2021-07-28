@@ -1,53 +1,53 @@
 
 
-<section id="about">
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <div class="block">
-
-          <ul class="counter-box clearfix">
-            <li>
-              <div class="block">
-                <i class="ion-ios-chatboxes-outline"></i>
-                <h4 class="counter"><count-up start="0" step="5" count-to="70" interval="1"></count-up></h4>
-                <span>Life Span</span>
-              </div>
-            </li>
+  <section id="about">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="block">
 
             <ul class="counter-box clearfix">
               <li>
                 <div class="block">
-                  <i class="ion-ios-glasses-outline"></i>
-                  <h4 class="counter"><count-up start= "0" step="1"  count-to="3" interval="1000"></count-up></h4>
-                  <span>Root to source</span>
+                  <i class="ion-ios-chatboxes-outline"></i>
+                  <h4 class="counter"><count-up start="0" step="5" count-to="70" interval="1"></count-up></h4>
+                  <span>Life Span</span>
                 </div>
               </li>
 
               <ul class="counter-box clearfix">
                 <li>
                   <div class="block">
-                    <i class="ion-ios-compose-outline"></i>
-                    <h4 class="counter"><count-up count-to="1321"  step="1" start="1265" step="10" interval="1"></count-up></h4>
-                    <span>Death</span>
+                    <i class="ion-ios-glasses-outline"></i>
+                    <h4 class="counter"><count-up start="0" step="1" count-to="3" interval="1000"></count-up></h4>
+                    <span>Root to source</span>
                   </div>
                 </li>
 
                 <ul class="counter-box clearfix">
                   <li>
                     <div class="block">
-                      <i class="ion-ios-timer-outline"></i>
-                      <h4 class="counter"><count-up count-to="1265"  step="5" start="1200" interval="1"></count-up></h4>
-                      <span>Born</span>
+                      <i class="ion-ios-compose-outline"></i>
+                      <h4 class="counter"><count-up count-to="1321" step="1" start="1265" step="10" interval="1"></count-up></h4>
+                      <span>Death</span>
                     </div>
                   </li>
 
+                  <ul class="counter-box clearfix">
+                    <li>
+                      <div class="block">
+                        <i class="ion-ios-timer-outline"></i>
+                        <h4 class="counter"><count-up count-to="1265" step="5" start="1200" interval="1"></count-up></h4>
+                        <span>Born</span>
+                      </div>
+                    </li>
+
+                  </ul>
                 </ul>
               </ul>
             </ul>
-          </ul>
+          </div>
         </div>
-      </div>
         <div class="col-md-6">
           <data-owl-carousel class="about-carousel owl-carousel" data-options="{navigation: false, pagination: true, singleItem: true, rewindNav : false}">
             <div owl-carousel-item="" ng-repeat="item in ::items2 track by $index" class="owl-item">
@@ -63,10 +63,32 @@
           </data-owl-carousel>
         </div>
       </div>
+
+      <div class="row">
+        <h2>Settings</h2>
+
+      </div>
+
+      <div class="row">
+          <div class="col-md-6">
+            <form>
+              <b>Import Your Canto:</b>
+              <input type="file" ng-file-select="onFileSelect($files)" class="form-control-file border">
+            </form>
+          </div>
+          <div class="col-md-6">
+            <form>
+              <b>Reset:</b><br />
+              <button class="btn btn-secondary"  ng-click="reset()">default</button>
+
+            </form>
+          </div>
+        
+
+      </div>
     </div>
 
-
-</section>
+  </section>
 
 
 

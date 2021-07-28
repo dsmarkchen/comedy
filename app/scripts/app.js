@@ -9,61 +9,115 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-.service('ivService', function($http) {
 
-  this._modifier = [
-         0.094,0.135137432,0.16639787, 0.192650919,0.21573247,
-                0.236572661,0.25572005,0.273530381,0.29024988,0.306057378,
-                0.3210876,0.335445036,0.34921268,0.362457751,0.3752356,
-                0.387592416,0.39956728,0.411193551,0.4225,0.432926409,
+    .service('comedyService', function ($http) {
+        var lines = [];
+        var rawlines = [];
+        var temp = [];
+        var counter = 0;
+        var opt = "inferno";
+        var cmdyOpt = localStorage.getItem("comedyOpt");
+        if (cmdyOpt != null) {
+            opt = cmdyOpt;
+        }
 
-                0.44310755,0.453059959,0.4627984,0.472336093,0.48168495,
-                0.4908558,0.49985844,0.508701765,0.51739395,0.525942511,
-                0.5343543,0.542635738,0.5507927,0.558830586,0.5667545,
-                0.574569133,0.5822789,0.589887907,0.5974,0.604823665,
+        var cmdyRaws = localStorage.getItem("comedyRawlines");
+        if (cmdyRaws != null) {
+            rawlines = cmdyRaws;
+        }
+        var cmdyLines = localStorage.getItem("comedyLines");
+        if (cmdyLines != null && cmdyLines != "") {
+            lines = cmdyLines;
+        }
 
-                0.6121573,0.619404122,0.6265671,0.633649143,0.64065295,
-                0.647580967,0.65443563,0.661219252,0.667934,0.674581896,
-                0.6811649,0.687684904,0.69414365,0.70054287,0.7068842,
-                0.713169109,0.7193991,0.725575614,0.7317,0.734741009,
+        var build = function (item,) {
+            var withBreaker = '<br>';            
+            if (item.trim().length > 0) {
+                var exp = /^##/;
+                if (exp.test(item)) {
+                    if (temp.length > 0) {
+                        lines.push({
+                            name: name,
+                            line: counter,
+                            text: temp.join(withBreaker),
+                            visible: true
+                        });
+                        temp = [];
+                    }
+                    name = item.replace(/^## /, "");
+                    counter = 0;
+                    return;
+                }
+                var res = item.replace(/--/g, "&#x2012;");
+                temp.push(res.trim());
+                counter++;
+                if (temp.length == 3) {
+                    lines.push({
+                        name: name,
+                        line: counter - 2,
+                        text: temp.join(withBreaker),
+                        visible: true
+                    });
+                    temp = [];
+                }
+            }
+        }
 
-                0.7377695,0.740785594,0.74378943,0.746781211,0.74976104,
-                0.752729087,0.7556855,0.758630368,0.76156384,0.764486065,
-                0.76739717,0.770297266,0.7731865,0.776064962,0.77893275,
-                0.781790055,0.784637,0.787473608,0.7903,
-                
-                0.792803968, 0.79530001, 0.797800015, 	
-                0.8003, 0.802799995, 0.8053, 0.8078,
-                0.81029999, 0.812799985, 0.81529999,0.81779999,
-                0.82029999, 0.82279999, 0.82529999, 0.82779999,
+        var feedme = function (opt) {
+            var base = 'https://dsmarkchen.github.io/comedy/';
+            var url = base + 'data/' + opt + '.txt';
 
-                0.83029999, 0.83279999, 0.83529999, 0.83779999, 
-                0.84029999, 0.84279999,	0.84529999 
-                 
-    ];
-    this.getCpm = function (level)  {
-           var cpm =  this._modifier[(level-1)*2];
-           return cpm;
-    };
-    this.calculateCP= function (level, iv, stat) {
-        var cpm = this.getCpm(level);
-        var atk = cpm * (iv.Atk + stat.Atk);
-        var def = cpm * (iv.Def + stat.Def);
-        var hp = cpm * (iv.Hp + stat.Hp);
-        var cp = Math.floor((iv.Atk + stat.Atk) * Math.pow(iv.Def + stat.Def, 0.5) * Math.pow(iv.Hp + stat.Hp, 0.5) * Math.pow(cpm, 2) /10);
-        return cp;   
-    }
+            $http.get(url).then(function (rsp) {
+                rawlines = rsp.data.split(/\r?\n/);
+                localStorage.setItem("comedyRawlines", JSON.stringify(rawlines));
+                makelines();
+            });
+        }
 
-    this.getStat = function (name) {
-        var file = '/stats.txt';
-        $http.get(file) .then(function(rsp) {
+        return {
+            opt: function (newopt) {
+                if (opt != newopt) {
+                    opt = newopt;                    
+                }
+                return opt;
+            },
+            lines: function (newLines) {
+                if (lines != newLines) {
+                    lines = newLines;                    
+                }
+                return lines;
+            },
+            rawlines: function (newLines) {
+                if (rawlines != newLines) {
+                    rawlines = newLines;                    
+                }
+                return rawlines;
+            },
+            feed: function (opt) {
+                feedme(opt);
+            },
+            get: function () {
+                if (rawlines.length == 0) {
+                    feedme(opt);
+                    return;
+                }
+                makelines();
+            },
+            makelines: function () {
+                lines = [];
+                for (var i = 0; i < rawlines.length; i++) {
+                    build(rawlines[i], true);
+                }
+                if (lines.length > 0) {
+                    lines.push({ line: counter - 1, text: rawlines.join('<br>') });
+                }
+                localStorage.setItem("comedyLines", JSON.stringify(lines));
+            }
+        }
 
-                        var rawteam = rsp.split(/\r?\n/) ;
-
-                        console.log("getTeam " +rawteam);
- 
-           });
-    };
+    
+      
+  
 
 })
 .directive('xwindow', ['$window', function ($window) {
