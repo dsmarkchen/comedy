@@ -30,7 +30,7 @@ angular
             lines = cmdyLines;
         }
 
-        var build = function (item,) {
+        var build = function (item) {
             var withBreaker = '<br>';            
             if (item.trim().length > 0) {
                 var exp = /^##/;
