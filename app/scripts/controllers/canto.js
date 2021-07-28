@@ -19,12 +19,21 @@ angular.module('comedyApp')
             $scope.opt = "inferno";
             localStorage.setItem("comedyOpt", $scope.opt);
         }
+        comedyService.opt($scope.opt);
+
         var cmdylines = JSON.parse(localStorage.getItem("comedyLines"));
         if (cmdylines != null) {
             $scope.lines = cmdylines;
         }
-        comedyService.lines($scope.lines);
-        comedyService.opt($scope.opt);
+        else {
+            var promise = comedyService.feedme();
+            promise.then(function success(rsp) {
+                $scope.lines = comedyService.lines;
+            });
+        }
+        
+
+        
 
       $scope.items2 = [
         {name: "Inferno", 
@@ -34,10 +43,7 @@ angular.module('comedyApp')
         {name: "Paradiso",
            text: "the degrees of spiritual realization"
        },];
-        if ($scope.lines == null) {
-            comedyService.get();
-        }
-
+        
 
         var step = 3;
         $scope.move = function () {

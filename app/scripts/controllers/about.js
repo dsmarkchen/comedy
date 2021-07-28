@@ -61,7 +61,9 @@ angular.module('comedyApp')
 
         $scope.reset = function () {
             comedyService.rawlines([]);
-            comedyService.get();
+            comedyService.feedme();
+            comedyService.makelines();
+            
         }
         $scope.$on("fileProgress", function (e, progress) {
             $scope.progress = progress.loaded / progress.total;

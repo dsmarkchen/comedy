@@ -9,8 +9,7 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
-
-    .service('comedyService', function ($http) {
+    .service('comedyService', function ($http) {        
         var lines = [];
         var rawlines = [];
         var temp = [];
@@ -30,7 +29,7 @@ angular
             lines = cmdyLines;
         }
 
-        var build = function (item) {
+        var _build = function (item) {
             var withBreaker = '<br>';            
             if (item.trim().length > 0) {
                 var exp = /^##/;
@@ -62,16 +61,15 @@ angular
                 }
             }
         }
-
-        var feedme = function (opt) {
-            var base = 'https://dsmarkchen.github.io/comedy/';
-            var url = base + 'data/' + opt + '.txt';
-
-            $http.get(url).then(function (rsp) {
-                rawlines = rsp.data.split(/\r?\n/);
-                localStorage.setItem("comedyRawlines", JSON.stringify(rawlines));
-                makelines();
-            });
+        var _makelines = function () {
+            lines = [];
+            for (var i = 0; i < rawlines.length; i++) {
+                _build(rawlines[i], true);
+            }
+            if (lines.length > 0) {
+                lines.push({ line: counter - 1, text: rawlines.join('<br>') });
+            }
+            localStorage.setItem("comedyLines", JSON.stringify(lines));
         }
 
         return {
@@ -87,6 +85,20 @@ angular
                 }
                 return lines;
             },
+            makelines: function () {
+                _makelines();
+            },
+            feedme: function () {
+                var base = 'https://dsmarkchen.github.io/comedy/';
+                var url = base + 'data/' + opt + '.txt';
+
+                $http.get(url).then(function (rsp) {
+                    rawlines = rsp.data.split(/\r?\n/);
+                    localStorage.setItem("comedyRawlines", JSON.stringify(rawlines));
+                    _makelines();
+                });
+
+            },
             rawlines: function (newLines) {
                 if (rawlines != newLines) {
                     rawlines = newLines;                    
@@ -96,23 +108,6 @@ angular
             feed: function (opt) {
                 feedme(opt);
             },
-            get: function () {
-                if (rawlines.length == 0) {
-                    feedme(opt);
-                    return;
-                }
-                makelines();
-            },
-            makelines: function () {
-                lines = [];
-                for (var i = 0; i < rawlines.length; i++) {
-                    build(rawlines[i], true);
-                }
-                if (lines.length > 0) {
-                    lines.push({ line: counter - 1, text: rawlines.join('<br>') });
-                }
-                localStorage.setItem("comedyLines", JSON.stringify(lines));
-            }
         }
 
     
@@ -319,7 +314,7 @@ angular
 		}
 	};
 })
- .config(['$routeProvider', function ($routeProvider, $routeParams) {
+.config(['$routeProvider', function ($routeProvider, $routeParams) {
     $routeProvider
        .when('/', {
         templateUrl: 'views/main.html',
