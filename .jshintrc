@@ -10,7 +10,9 @@
   "strict": true,
   "undef": true,
   "unused": true,
+  "predef": ["showdown", ]
   "globals": {
     "angular": false
   }
+   
 }
