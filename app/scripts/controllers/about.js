@@ -58,6 +58,13 @@ angular.module('comedyApp')
         };
 
         $scope.reset = function () {
+            var items = [{
+                book: "Inferno,1,31",
+                keyword: "Beasts",
+                text: "- ###leopard\n\n- ###lion\n\n- ###she-wolf\r\n<p> envy, wrath, avarice </p>"
+            }]
+            localStorage.setItem("comedyNotes", JSON.stringify(items));
+
             comedyService.opt($scope.opt);
             comedyService.rawlines([]);
             comedyService.feedme();

@@ -3,6 +3,11 @@
   display: block;
   margin-bottom: 40px;
 }
+#notes .selected {
+  border: 1px solid #999999;
+ background-color:#acbad4
+}
+
 #notes .preview{
     font-size: smaller;
     color: #111;

@@ -2,18 +2,23 @@
   <div class="container">
 
 
+    <table class="table table-hover">     
+      <tbody>
+        <tr class="d-flex" ng-repeat="note in items track by $index " ng-click="select($index)">
 
-    <div class="" ng-repeat="note in items track by $index ">
-      <div class="row">
-        <div class="col-3" style="margin:0px 0px 0px 0px;padding:0px 0px; border: 1px solid #f8f9fa;">
-          <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{note.book}} </p>
-        </div>
-        <div class="col-9" style="padding-left:1px;padding-right:1px">
-          <h4>{{note.keyword}} </h4>
-          <div class="preview" ng-bind-html='note.text  | markdown'></div>
-        </div>
-      </div>
-    </div>
+          <td class="col-sm-3">
+            <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{note.book}} </p>
+          </td>
+          <td class="col-sm-9">
+            <h4>{{note.keyword}} </h4>
+            <div class="preview" ng-bind-html='note.text  | markdown'></div>
+
+          </td>
+
+
+        </tr>
+      </tbody>
+    </table>
 
 
   </div>
@@ -23,4 +28,42 @@
 </section>
 
 
+<section id="notes">
+  <div class="container">
+    <div class="col-row">
+      <div class="col-md-12">
+        <input type="text" name="bookname" ng-model="book_name" />
+        <input type="text" name="keyword" ng-model="key_word" />
+        <textarea ng-model="input" placeholder="Enter Markdown text here" autofocus="true" rows="5" cols="40"></textarea>
+        <div ng-cloak ng-if="input.length > 0">
+
+          <h2>HTML Preview</h2>
+          <div ng-bind-html="input | markdown" class="preview"></div>
+
+        </div>        
+        <button class="btn btn-secondary" ng-click="updateItem(book_name, key_word, input)">Save</button>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+<section id="notes">
+  <div class="container">
+    <div class="col-row">
+
+      File Name: <input type="text" ng-model="filename" /><br>
+      <button class="btn btn-secondary" ng-click="saveJSON(items)">Save</button>
+    </div>
+    <div class="col-row">
+      <input type="file" ng-file-select="onFileSelect($files)" class="form-control-file border">
+
+
+
+    </div>
+
+  </div>
 
