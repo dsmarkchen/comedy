@@ -348,7 +348,12 @@ angular
             controller: 'VoyageCtrl',
             controllerAs: 'voyage'
         })
-        .when('/about', {
+        .when('/settings', {
+            templateUrl: 'views/settings.html',
+            controller: 'SettingsCtrl',
+            controllerAs: 'settings'
+        })
+         .when('/about', {
             templateUrl: 'views/about.html',
             controller: 'AboutCtrl',
             controllerAs: 'about'

@@ -30,7 +30,7 @@ angular.module('comedyApp')
                 $scope.lines = comedyService.lines;
             });
         }
-        
+        $scope.notes = JSON.parse(localStorage.getItem("comedyNotes"));
 
         
 
@@ -124,7 +124,31 @@ angular.module('comedyApp')
             }
         });
 
-  })
+    })
+    .filter('noteFilter', function () {
+        return function (comments, query) {
+            var filtered = [];
+            if (query == "") return filtered;
+            var que = query.split(/[,:]/);
+            var conto = que[0];
+            var start = que[1];
+            var end = que[2];
+            angular.forEach(comments, function (item) {
+                var item_book = item.book;
+                var item_que = item_book.split(/[,:]/)
+                var name = item_que[0].toLowerCase();
+                var canto_ind = parseInt(item_que[1]);
+                var canto_pos = parseInt(item_que[2]);
+                if (name == "inferno" && canto_ind == conto && (canto_pos >= start && canto_pos <= end)) {
+                    filtered.push(item);
+                    console.log("book: " + item.book + "\nkey:" + item.key + "\ntext:" + item.text);
+                }
+            });
+
+            //then we return the filtered items array
+            return filtered;
+        }
+    })
     .filter('myCantoFilter', function () {
         return function (items, query) {
             var filtered = [];

@@ -11,7 +11,7 @@ angular.module('comedyApp')
     .controller('NotesCtrl', function ($scope, fileReader) {
         $scope.clear = function () {
             $scope.book_name = "";
-            $scope.key_word = "";
+            $scope.key= "";
             $scope.input = "";
             $scope.ind = -1;
         }
@@ -22,18 +22,18 @@ angular.module('comedyApp')
             $scope.items = [
                 {
                     book: "Inferno,1,31",
-                    keyword: "Beasts",
+                    key: "Beasts",
                     text: "- ###leopard\n\n- ###lion\n\n- ###she-wolf\r\n<p> envy, wrath, avarice </p>"
                 },
                 {
-                    book: "Purgatorio",
-                    keyword: "Beasts",
-                    text: "the process of transmuting fleshly into spiritual experience"
+                    book: "Inferno,1,79",
+                    key: "Virgil",
+                    text: "Roman Poet, Aeneid"
                 },
                 {
-                    book: "Paradiso",
-                    keyword: "Beasts",
-                    text: "the degrees of spiritual realization"
+                    book: "Inferno,1,133",
+                    key: "Saint Peter",
+                    text: "Cristrian Figure"
                 },];
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
         }
@@ -44,14 +44,14 @@ angular.module('comedyApp')
             var note = $scope.items[ind];
             $scope.ind = ind;
             $scope.book_name = note.book;
-            $scope.key_word = note.keyword;
+            $scope.key = note.key;
             $scope.input = note.text;
         }
 
         $scope.addItem = function (bookind, brief, content) {
             var item = {
                 book: bookind,
-                keyword: brief,
+                key: brief,
                 text: content,
 
             };
@@ -66,7 +66,7 @@ angular.module('comedyApp')
             }
             var item = {
                 book: bookind,
-                keyword: brief,
+                key: brief,
                 text: content,
 
             };

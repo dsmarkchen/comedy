@@ -57,21 +57,7 @@ angular.module('comedyApp')
                 });
         };
 
-        $scope.reset = function () {
-            var items = [{
-                book: "Inferno,1,31",
-                keyword: "Beasts",
-                text: "- ###leopard\n\n- ###lion\n\n- ###she-wolf\r\n<p> envy, wrath, avarice </p>"
-            }]
-            localStorage.setItem("comedyNotes", JSON.stringify(items));
-
-            comedyService.opt($scope.opt);
-            comedyService.rawlines([]);
-            comedyService.feedme();
-            comedyService.makelines();
-            
-        }
-        $scope.$on("fileProgress", function (e, progress) {
+       $scope.$on("fileProgress", function (e, progress) {
             $scope.progress = progress.loaded / progress.total;
         });
         $scope.$watch('comedyService.lines', function (newValue, oldValue) {
@@ -86,73 +72,4 @@ angular.module('comedyApp')
         });
 
     })
-    .directive("ngFileSelect", function () {
-
-        return {
-            link: function ($scope, el) {
-
-                el.bind("change", function (e) {
-
-                    $scope.file = (e.srcElement || e.target).files[0];
-                    $scope.getFile();
-
-                });
-
-            }
-
-        };
-    })
-
- .factory("fileReader", function ($q, $log) {
-
-        $log.log("fileReader"); 
-
-        var onLoad = function(reader, deferred, scope) {
-            return function () {
-                scope.$apply(function () {
-                    deferred.resolve(reader.result);
-                });
-            };
-        };
- 
-        var onError = function (reader, deferred, scope) {
-            return function () {
-                scope.$apply(function () {
-                    deferred.reject(reader.result);
-                });
-            };
-        };
- 
-        var onProgress = function(reader, scope) {
-            return function (event) {
-                scope.$broadcast("fileProgress",
-                    {
-                        total: event.total,
-                        loaded: event.loaded
-                    });
-            };
-        };
- 
-        var getReader = function(deferred, scope) {
-            var reader = new FileReader();
-            reader.onload = onLoad(reader, deferred, scope);
-            reader.onerror = onError(reader, deferred, scope);
-            reader.onprogress = onProgress(reader, scope);
-            return reader;
-        };
- 
-        var readAsText = function (file, scope) {
-            var deferred = $q.defer();
-             
-            var reader = getReader(deferred, scope);         
-            reader.readAsText(file);
-             
-            return deferred.promise;
-        };
- 
-        return {
-            readAsText: readAsText  
-        };
-    }
-)
 ;
