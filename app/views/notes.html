@@ -10,7 +10,7 @@
             <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{note.book}} </p>
           </td>
           <td class="col-sm-9">
-            <h4>{{note.key}} </h4>
+            <h4><small>{{note.key}}</small></h4>
             <div class="preview" ng-bind-html='note.text  | markdown'></div>
 
           </td>
@@ -33,7 +33,7 @@
     <div class="col-row">
       <div class="col-md-12">
         <input type="text" name="bookname" ng-model="book_name" />
-        <input type="text" name="keyword" ng-model="key_word" />
+        <input type="text" name="keyword" ng-model="key" />
         <textarea ng-model="input" placeholder="Enter Markdown text here" autofocus="true" rows="5" cols="40"></textarea>
         <div ng-cloak ng-if="input.length > 0">
 
@@ -41,7 +41,7 @@
           <div ng-bind-html="input | markdown" class="preview"></div>
 
         </div>        
-        <button class="btn btn-secondary" ng-click="updateItem(book_name, key_word, input)">Save</button>
+        <button class="btn btn-secondary" ng-click="updateItem(book_name, key, input)">Save</button>
 
 
       </div>
@@ -67,3 +67,4 @@
 
   </div>
 
+</section>

@@ -9,10 +9,10 @@
   "node": true,
   "strict": true,
   "undef": true,
-  "unused": true,
-  "predef": ["showdown", ]
+  "unused": true,  
   "globals": {
-    "angular": false
+    "angular": false,
+    "showdown":  true
   }
    
 }

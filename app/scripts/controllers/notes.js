@@ -23,7 +23,7 @@ angular.module('comedyApp')
                 {
                     book: "Inferno,1,31",
                     key: "Beasts",
-                    text: "- ###leopard\n\n- ###lion\n\n- ###she-wolf\r\n<p> envy, wrath, avarice </p>"
+                    text: "- leopard (envy) \n\n- lion (wrath, or pride) \n\n- she-wolf (avarice)\r\n</p>"
                 },
                 {
                     book: "Inferno,1,79",
@@ -33,7 +33,7 @@ angular.module('comedyApp')
                 {
                     book: "Inferno,1,133",
                     key: "Saint Peter",
-                    text: "Cristrian Figure"
+                    text: "Simon Peter"
                 },];
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
         }

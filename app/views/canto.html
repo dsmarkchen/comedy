@@ -63,7 +63,7 @@
               <ul class="list-group list-group-flush">
 
                 <li class="list-group-item" ng-repeat="comment in notes  | noteFilter: myQuery track by $index">
-                  <i class="fa fa-caret-right" sytle="height:80px" tooltip tooltip-content="comment.text"> {{comment.key}}</i>
+                  <p  tooltip tooltip-content="comment.text | markdown"> {{comment.key}}</p>
                 </li>
               </ul>
 
