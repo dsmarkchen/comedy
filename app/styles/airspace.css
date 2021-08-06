@@ -14,7 +14,7 @@
 	Common Css
 --*/
 body {  
-  font-family: 'Roboto', 'Open Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   -webkit-font-smoothing: antialiased;
 }
 h1,
@@ -23,7 +23,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: 'Roboto', sans-serif;
+  font-family: 'Roboto','Open Sans', sans-serif;
 }
 h2 {
   font-size: 30px;

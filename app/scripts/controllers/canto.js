@@ -13,7 +13,7 @@ angular.module('comedyApp')
         $scope.selectedWord = "";
         $scope.selectedText = "";
 
-        $scope.myQuery = "1:1,25";
+        $scope.myQuery = "1:1,24";
         
 
         $scope.opt = localStorage.getItem("comedyOpt");
