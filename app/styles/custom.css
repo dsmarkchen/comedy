@@ -1,3 +1,7 @@
+.highlighted {
+  background-color: yellow;
+}
+
 #notes {
   border: 1px solid #999999;
   display: block;
@@ -250,7 +254,8 @@ pre.canto {
 
   /*font-size: 13px;*/
   /*line-height: 28px;*/
-  margin: 0 0 10px;
+  margin: 0 0 5px;
+  padding: 0;
 }
 
 #canto p.line {
@@ -259,6 +264,28 @@ pre.canto {
   overflow: hidden;
   text-align: right;
 }
+
+#canto ul {
+  list-style: disc;
+  margin: 0 0 10px 20px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+#canto li :hover {
+  background-color:yellow;
+}
+
+#canto .note {
+  text-align: left;
+  border: 1px solid #DEDEDE;
+  padding: 5px;
+  width: 100%;
+}
+
+
 
 table tr td.canto {
   text-align: right;

@@ -1,5 +1,43 @@
 <section id="notes">
   <div class="container">
+    <form>
+      <div class="form-group row">
+
+
+        <div class="col-md-3">
+          <h4><small>Book</small></h4>
+          <input type="text" name="bookname" ng-model="book_name" />
+          <h4><small>Key</small></h4>
+          <input type="text" name="keyword" ng-model="key" />
+        </div>
+        <div class="col-md-6">
+          <h4><small>Text</small></h4>
+          <textarea ng-model="input" class="form-control" placeholder="Enter Markdown text here" autofocus="true" rows="5" style="max-width: 100%;"></textarea>
+
+
+          <div ng-cloak ng-if="input.length > 0">
+            <h4><small>HTML Preview</small></h4>
+            <div ng-bind-html="input | markdown" class="preview"></div>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <button class="btn btn-secondary" ng-hide="ind < 0" ng-click="updateItem(book_name, key, input)">Save</button>
+          <button class="btn btn-secondary" ng-hide="ind < 0" ng-click="deleteItem()">Delete</button>
+          <button class="btn btn-secondary" ng-hide="ind < 0" ng-click="moveItem(-1)">Up</button>
+          <button class="btn btn-secondary" ng-hide="ind < 0" ng-click="moveItem(1)">Down</button>
+          <button class="btn btn-secondary" ng-hide="ind >= 0 " ng-click="addItem(book_name, key, input)">Add</button>
+        </div>
+
+      </div>
+
+  
+  </form>
+  </div>
+
+</section>
+
+<section id="notes">
+  <div class="container">
 
 
     <table class="table table-hover">     
@@ -28,29 +66,7 @@
 </section>
 
 
-<section id="notes">
-  <div class="container">
-    <div class="col-row">
-      <div class="col-md-12">
-        <input type="text" name="bookname" ng-model="book_name" />
-        <input type="text" name="keyword" ng-model="key" />
-        <textarea ng-model="input" placeholder="Enter Markdown text here" autofocus="true" rows="5" cols="40"></textarea>
-        <div ng-cloak ng-if="input.length > 0">
 
-          <h2>HTML Preview</h2>
-          <div ng-bind-html="input | markdown" class="preview"></div>
-
-        </div>        
-        <button class="btn btn-secondary" ng-click="updateItem(book_name, key, input)">Save</button>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-</section>
 <section id="notes">
   <div class="container">
     <div class="col-row">

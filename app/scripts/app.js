@@ -117,6 +117,17 @@ angular
 
 
     })
+    .filter('highlight', function () {
+        return function (text, selectedWord) {
+            if (selectedWord) {
+                var pattern = new RegExp(selectedWord, "g");
+                return text.replace(pattern, '<span class="highlighted">' + selectedWord + '</span>');
+            }
+            else {
+                return text;
+            }
+        };
+    })
     .directive('xwindow', ['$window', function ($window) {
         return {
             link: link,

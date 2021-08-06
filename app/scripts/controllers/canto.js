@@ -10,8 +10,10 @@
 angular.module('comedyApp')
     .controller('CantoCtrl', function ($scope, $http, comedyService, fileReader) {
         $scope.lines = [];
-        
-      $scope.myQuery = "1:1,25";
+        $scope.selectedWord = "";
+        $scope.selectedText = "";
+
+        $scope.myQuery = "1:1,25";
         
 
         $scope.opt = localStorage.getItem("comedyOpt");
@@ -32,22 +34,16 @@ angular.module('comedyApp')
         }
         $scope.notes = JSON.parse(localStorage.getItem("comedyNotes"));
 
-        
-
-      $scope.items2 = [
-        {name: "Inferno", 
-         text: "the misery of the spirit bound to the prides and actions of the flash"}, 
-        {name: "Purgatorio",
-         text: "the process of transmuting fleshly into spiritual experience"}, 
-        {name: "Paradiso",
-           text: "the degrees of spiritual realization"
-       },];
-        
-
         var step = 3;
         $scope.move = function () {
+            $scope.selectedWord = "";
+            $scope.selectedText = "";
+
+
             var query = $scope.myQuery;
-            if (query == "") return;
+            if (query == "") {
+                return;
+            }
             var que = query.split(/[,:]/);
             var sec = que[0].trim();
             var start = parseInt(que[1].trim(), 10);
@@ -111,7 +107,11 @@ angular.module('comedyApp')
                 localStorage.setItem("myRawlines", $scope.rawlines);
             }
         });
-
+        $scope.hoverIn = function (note) {
+            $scope.selectedWord = note.key;
+            $scope.selectedText = note.text;
+            console.log("hover: " + $scope.selectedWord);
+        };
 
         $scope.$watch('comedyService.lines', function (newValue, oldValue) {
             if (oldValue != newValue) {

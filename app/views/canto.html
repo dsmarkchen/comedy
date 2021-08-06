@@ -36,7 +36,7 @@
                 <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{canto.name}}:{{canto.line}} </p>
               </div>
               <div class="col-11" style="padding-left:1px;padding-right:1px">                
-                <p class="canto" ng-bind-html='canto.text'></p>
+                <p class="canto" ng-bind-html='canto.text | highlight : selectedWord'></p>
               </div>
             </div>
           </div>
@@ -44,7 +44,7 @@
         </div>
 
         <div class="col-md-3">
-           <div class="row">
+          <div class="row">
             <form>
               <div class="form-group row">
 
@@ -53,22 +53,23 @@
 
               </div>
             </form>
-            </div>
-            <div class="row">
-              <button class="btn btn-secondary col-sm-3 offset-sm-1" ng-click="prev()"><i class="ion-ios-arrow-left"></i></button>
-              <button class="btn btn-secondary col-sm-3 offset-sm-1" ng-click="next()"><i class="ion-ios-arrow-right"></i></button>
-            </div>
+          </div>
+          <div class="row">
+            <button class="btn btn-secondary col-sm-3 offset-sm-1" ng-click="prev()"><i class="ion-ios-arrow-left"></i></button>
+            <button class="btn btn-secondary col-sm-3 offset-sm-1" ng-click="next()"><i class="ion-ios-arrow-right"></i></button>
+          </div>
 
-            <div class="row">
-              <ul class="list-group list-group-flush">
+          <div class="row">
+            <ul class="list-group list-group-flush">
 
-                <li class="list-group-item" ng-repeat="comment in notes  | noteFilter: myQuery track by $index">
-                  <p  tooltip tooltip-content="comment.text | markdown"> {{comment.key}}</p>
-                </li>
-              </ul>
+              <li  ng-mouseover="hoverIn(comment)" ng-repeat="comment in notes  | noteFilter: myQuery track by $index">
+                <small>{{comment.key}}</small>
+              </li>
+            </ul>
 
-            </div>
-
+          </div>
+          <div class="row" ng-hide="selectedText == ''">
+            <div class="note" ng-bind-html='selectedText  | markdown'></div>
           </div>
         </div>
     </div>
