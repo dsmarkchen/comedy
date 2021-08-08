@@ -52,7 +52,7 @@ angular.module('comedyApp')
   }  
 }}) 
   .controller('MainCtrl', ['$window', '$scope', '$location', function ($window, $scope, $location) {
-
+    var sss = [136, 142, 136, 151, 142, 115, 130, 130, 133, 137];
     var mainCtrl = this;
 	mainCtrl.test = 'testing mainController';
 
@@ -60,8 +60,12 @@ angular.module('comedyApp')
     $scope.txTotalLHs = localStorage.getItem("totalLHs");
     $scope.rxTotalSymbols = localStorage.getItem("rxTotalSymbols");
     $scope.rxTotalLHs = localStorage.getItem("rxTotalLHs");
-
-
+    $scope.linesCountInferno = localStorage.getItem("comedyLinesCountinferno");
+    var sum = 0;
+    for (var s in sss) {
+        sum = sum + sss[s];
+    }
+    $scope.linesTotalInferno = sum;
     $scope.isActive = function (viewLocation) { 
         return viewLocation === $location.path();
     };

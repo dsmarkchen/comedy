@@ -46,6 +46,7 @@
   },
   "dependencies": {
     "gifsicle": "^4.0.1",
+    "gulp": "^4.0.2",
     "handlebars": "^4.7.7",
     "hawk": "^7.0.10",
     "karma-cli": "^2.0.0",

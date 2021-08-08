@@ -71,6 +71,9 @@ angular
                 lines.push({ line: counter - 1, text: rawlines.join('<br>') });
             }
             localStorage.setItem("comedyLines" + opt, JSON.stringify(lines));
+            localStorage.setItem("comedyLinesCount" + opt, lines.length * 3);
+            $log.log("comedyService.linesCountInferno: " + lines.length * 3);
+        
         }
 
         return {
