@@ -83,6 +83,7 @@ angular.module('comedyApp')
         $scope.txTotalLHs = localStorage.getItem("totalLHs");
         $scope.rxTotalSymbols = localStorage.getItem("rxTotalSymbols");
         $scope.rxTotalLHs = localStorage.getItem("rxTotalLHs");
+
         $scope.linesCountInferno = localStorage.getItem("comedyLinesCountinferno");
         $scope.linesCountPurgatorio = localStorage.getItem("comedyLinesCountpurgatorio");
         $scope.linesCountParadiso = localStorage.getItem("comedyLinesCountparadiso");
@@ -90,13 +91,14 @@ angular.module('comedyApp')
             $scope.linesCountParadiso = 0;
         if ($scope.linesCountPurgatorio == null)
             $scope.linesCountPurgatorio = 0;
-
+        
         var sum = 0;
         for (var s in inferno_sss) {
             sum = sum + inferno_sss[s];
         }
         $scope.linesTotalInferno = sum;
-        
+        $scope.progressInferno = $scope.linesCountInferno / $scope.linesTotalInferno * 100;
+
         sum = 0;
         for (var s2 in purgatorio_sss) {
             sum = sum + purgatorio_sss[s2];

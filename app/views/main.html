@@ -11,9 +11,14 @@
 </div>
 
 
-<div class="container"> 
+<div class="container">
 
   <p> <strong> Summary </strong> </p>
+  <div class="inprogress">
+    <div class="inprogress-item color-bg-success-inverse" ng-style="{'width':progressInferno}" role="progressbar" aria-valuenow="{{progressInferno}}" aria-valuemin="0" aria-valuemax="100"></div>
+  </div>
+  <p><strong>Inferno:</strong>{{progressInferno | number : 2}}%</p>
+
   <table class="table table-striped">
     <tr>
       <th> </th>
@@ -26,27 +31,29 @@
       <td>   Inferno </td>
       <td>{{linesCountInferno}}  </td>
       <td>{{linesTotalInferno}}  </td>
-      <td>{{linesCountInferno/linesTotalInferno * 100 | number : 2}}  </td>
+      <td>
+        {{progressInferno | number : 2}}%
+      </td>
     </tr>
-    
+
     <tr>
       <td>   Purgatorio </td>
       <td>{{linesCountPurgatorio}}  </td>
       <td>{{linesTotalPurgatorio}}  </td>
-      <td>{{linesCountPurgatorio/linesTotalPurgatorio * 100 | number : 2}}  </td>
+      <td>{{linesCountPurgatorio/linesTotalPurgatorio * 100 | number : 2}}%  </td>
     </tr>
 
-  <tr>
-    <td>   Paradiso </td>
-    <td>{{linesCountParadiso}}  </td>
-    <td>{{linesTotalParadiso}}  </td>
-    <td>{{linesCountParadiso/linesTotalParadiso * 100 | number : 2}}  </td>
-  </tr>
-    
+    <tr>
+      <td>   Paradiso </td>
+      <td>{{linesCountParadiso}}  </td>
+      <td>{{linesTotalParadiso}}  </td>
+      <td>{{linesCountParadiso/linesTotalParadiso * 100 | number : 2}}%  </td>
+    </tr>
+
   </table>
 
   <div xwindow>
-    <p ng-if="width > 320" >The device window is: [{{width}}, {{height}}].</p>
+    <p ng-if="width > 320">The device window is: [{{width}}, {{height}}].</p>
   </div>
 
 </div>
