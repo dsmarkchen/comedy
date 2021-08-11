@@ -29,10 +29,11 @@ angular.module('comedyApp')
 
         $scope.clear = function () {
             $scope.book_name = "";
-            $scope.key= "";
+            $scope.key = "";
             $scope.input = "";
             $scope.ind = -1;
-        }
+        };
+
         $scope.clear();
         
         var items = JSON.parse(localStorage.getItem("comedyNotes"));
@@ -55,8 +56,9 @@ angular.module('comedyApp')
                 },];
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
         }
-        else
+        else {
             $scope.items = items;
+        }
 
         $scope.select = function (ind) {
             var note = $scope.items[ind];
@@ -64,14 +66,14 @@ angular.module('comedyApp')
             $scope.book_name = note.book;
             $scope.key = note.key;
             $scope.input = note.text;
-        }
-        $scope.moveItem = function(step) {
+        };
+
+        $scope.moveItem = function (step) {
             var newPos = $scope.ind + step;
             $scope.items = move($scope.items, $scope.ind, newPos);
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
             $scope.clear();
-
-        }
+        };
 
         $scope.addItem = function (bookind, brief, content) {
             var item = {
@@ -83,7 +85,8 @@ angular.module('comedyApp')
             $scope.items.push(item);
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
             $scope.clear();
-        }
+        };
+
         $scope.updateItem = function (bookind, brief, content) {
             if ($scope.ind == -1) {
                 $scope.addItem(bookind, brief, content);
@@ -96,20 +99,20 @@ angular.module('comedyApp')
 
             };
             $scope.items[$scope.ind] = item;
-            
+
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
             $scope.clear();
-        }
+        };
+
         $scope.deleteItem = function () {
-            if ($scope.ind == -1) {                
+            if ($scope.ind == -1) {
                 return;
             }
             $scope.items.splice($scope.ind, 1);
 
             localStorage.setItem("comedyNotes", JSON.stringify($scope.items));
             $scope.clear();
-        }
-
+        };
 
         $scope.saveJSON = function (json) {
             var jsonse = JSON.stringify(json);
@@ -118,7 +121,7 @@ angular.module('comedyApp')
             });
             $scope.filename = $scope.filename || "my_json";
             saveAs(blob, $scope.filename + ".json");
-        }
+        };
 
         $scope.getFile = function () {
 
@@ -136,9 +139,6 @@ angular.module('comedyApp')
         $scope.$on("fileProgress", function (e, progress) {
             $scope.progress = progress.loaded / progress.total;
         });
-
-
-
     })
     .filter('markdown', function () {
         var converter = new Showdown.converter();

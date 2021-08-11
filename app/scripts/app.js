@@ -61,7 +61,7 @@ angular
                     temp = [];
                 }
             }
-        }
+        };
         var _makelines = function () {
             lines = [];
             for (var i = 0; i < rawlines.length; i++) {
@@ -73,8 +73,19 @@ angular
             localStorage.setItem("comedyLines" + opt, JSON.stringify(lines));
             localStorage.setItem("comedyLinesCount" + opt, lines.length * 3);
             $log.log("comedyService.linesCountInferno: " + lines.length * 3);
-        
-        }
+
+        };
+        var _feedme = function (opt) {
+            var base = 'https://dsmarkchen.github.io/comedy/';
+            var url = base + 'data/' + opt + '.txt';
+
+            var promise = $http.get(url).then(function (rsp) {
+                rawlines = rsp.data.split(/\r?\n/);
+                localStorage.setItem("comedyRawlines" + opt, JSON.stringify(rawlines));
+                _makelines();
+            });
+            return promise;
+        };
 
         return {
             opt: function (newopt) {
@@ -94,15 +105,7 @@ angular
                 _makelines();
             },
             feedme: function () {
-                var base = 'https://dsmarkchen.github.io/comedy/';
-                var url = base + 'data/' + opt + '.txt';
-
-                var promise = $http.get(url).then(function (rsp) {
-                    rawlines = rsp.data.split(/\r?\n/);
-                    localStorage.setItem("comedyRawlines" + opt, JSON.stringify(rawlines));
-                    _makelines();
-                });
-                return promise;
+                return _feedme(opt);
             },
             rawlines: function (newLines) {
                 if (rawlines != newLines) {
@@ -111,9 +114,9 @@ angular
                 return rawlines;
             },
             feed: function (opt) {
-                return feedme(opt);
+                return _feedme(opt);
             },
-        }
+        };
 
 
 
@@ -132,11 +135,7 @@ angular
         };
     })
     .directive('xwindow', ['$window', function ($window) {
-        return {
-            link: link,
-            restrict: 'A'
-        };
-        function link(scope, element, attrs) {
+        function link(scope) {
             scope.width = $window.innerWidth;
             scope.height = $window.innerHeight;
 
@@ -151,7 +150,7 @@ angular
                     scope.height = $window.innerHeight;
                     scope.$digest();
                 }
-            };
+            }
 
             function cleanUp() {
                 angular.element($window).off('resize', onResize);
@@ -160,8 +159,13 @@ angular
             angular.element($window).on('resize', onResize);
             scope.$on('$destroy', cleanUp);
         }
+        return {
+            link: link,
+            restrict: 'A'
+        };
+        
     }])
-    .directive('countUp', ['$compile', function ($compile, $timeout) {
+    .directive('countUp', ['$compile', function ($compile) {
         return {
             restrict: 'E',
             replace: false,
@@ -178,8 +182,6 @@ angular
                 } else {
                     $element.append($compile($element.contents())($scope));
                 }
-
-                var i = 0;
                 function timeloop() {
                     $timeout(function () {
                         $scope.millis += $scope.step;
@@ -187,7 +189,7 @@ angular
                         if ($scope.millis < $scope.countTo) {
                             timeloop();
                         }
-                    }, $scope.interval)
+                    }, $scope.interval);
                 }
                 timeloop();
             }]

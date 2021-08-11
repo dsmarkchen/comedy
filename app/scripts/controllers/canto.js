@@ -9,9 +9,43 @@
  */
 angular.module('comedyApp')
     .controller('CantoCtrl', function ($scope, $http, comedyService, fileReader) {
+        $scope.notes = JSON.parse(localStorage.getItem("comedyNotes"));
+
+        $scope.selectedBookIndex = "";
+        $scope.selectedWords = "";
+        $scope.addNote = function (bookind, brief, content) {
+            var item = {
+                book: bookind,
+                key: brief,
+                text: content,
+
+            };
+            $scope.notes.push(item);
+            localStorage.setItem("comedyNotes", JSON.stringify($scope.notes));            
+        }
+        $scope.showSelectedWords = function (canto) {            
+            $scope.selectedBookIndex = $scope.opt + ", " + canto.name + "," + canto.line;
+            $scope.selectedWords = $scope.getWordsSelected();
+        };
+        $scope.getWordsSelected = function () {
+            var text = "";
+            if (window.getSelection) {
+                text = window.getSelection().toString();
+            } else if (document.selection && document.selection.type != "Control") {
+                text = document.selection.createRange().text;
+            }
+            return text;
+        };
+
+
+
+
         $scope.lines = [];
         $scope.selectedWord = "";
         $scope.selectedText = "";
+
+        
+
 
         $scope.myQuery =  localStorage.getItem("myQuery");
         if ($scope.myQuery == null) {
@@ -35,13 +69,13 @@ angular.module('comedyApp')
                 $scope.lines = comedyService.lines;
             });
         }
-        $scope.notes = JSON.parse(localStorage.getItem("comedyNotes"));
+        
 
         var step = 3;
         $scope.move = function () {
             $scope.selectedWord = "";
             $scope.selectedText = "";
-
+            $scope.selectedWords = "";
 
             var query = $scope.myQuery;
             if (query == "") {
@@ -128,6 +162,7 @@ angular.module('comedyApp')
         });
 
     })
+   
     .filter('noteFilter', function () {
         return function (comments, query) {
             var filtered = [];

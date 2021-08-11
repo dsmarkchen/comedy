@@ -1,6 +1,6 @@
 # comedy
 
-My votage in divine [comedy](https://dsmarkchen.github.io/comedy).
+My voyage in divine [comedy](https://dsmarkchen.github.io/comedy).
 
 ## canto
 Cantos of Divine Comedy, inferno 34, Purgaturio 33, Paradiso 33, total 100.

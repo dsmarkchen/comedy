@@ -24,24 +24,29 @@
       
         
       </div>
-        
-        
 
-        <div class="canto-outline col-md-6">
+      <div class="canto-outline col-md-6">
+
+        <div class="row" ng-hide="selectedWords == ''">
+          <input type="text" ng-model="selectedBookIndex"/>
+          <p>{{selectedWords}}</p>
+          <input type="text" class="form-control" ng-model="noteTextToAdd" />
+          <button class="btn btn-secondary" ng-click="addNote(selectedBookIndex, selectedWords,noteTextToAdd)">+</button>
+        </div>
 
 
-          <div class="" ng-repeat="canto in lines | myCantoFilter: myQuery  track by $index ">
-            <div class="row" ng-if='canto.visible'>
-              <div class="col-1" style="margin:0px 0px 0px 0px;padding:0px 0px; border: 1px solid #f8f9fa;">
-                <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{canto.name}}:{{canto.line}} </p>
-              </div>
-              <div class="col-11" style="padding-left:1px;padding-right:1px">                
-                <p class="canto" ng-bind-html='canto.text | highlight : selectedWord'></p>
-              </div>
+        <div class="" ng-repeat="canto in lines | myCantoFilter: myQuery  track by $index ">
+          <div class="row" ng-if='canto.visible'>
+            <div class="col-1" style="margin:0px 0px 0px 0px;padding:0px 0px; border: 1px solid #f8f9fa;">
+              <p class="line" style="margin:0px 0px 0px 0px;padding:0px 0px;background-color:#f8f9fa;">{{canto.name}}:{{canto.line}} </p>
+            </div>
+            <div class="col-11" style="padding-left:1px;padding-right:1px">
+              <p ng-mouseup="showSelectedWords(canto)" class="canto" ng-bind-html='canto.text | highlight : selectedWord'></p>
             </div>
           </div>
-
         </div>
+
+      </div>
 
         <div class="col-md-3">
           <div class="row">
