@@ -33,50 +33,10 @@
 
 
   <!-- Header Start -->
-  <header>
-    <div class="container">
-      <div class="row">
-        <div class="col-md-12">
-          <!-- header Nav Start -->
-          <nav class="navbar navbar-light bg-light">
-            <a class="navbar-brand" href="#!/main">
-              <img src="images/logo.png" alt="Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-              <ul class="navbar-nav">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#!/main">Home <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#!/canto">Canto</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#!/notes">Notes</a>
-                </li>
 
+  <div ng-include="'views/header.html'"></div>
 
-                <li class="nav-item">
-                  <a class="nav-link" href="#!/voyage">Voyage</a>
-                </li>
-
-                <li class="nav-item">
-                  <a class="nav-link" href="#!/settings">Settings</a>
-                </li>
-
-                 <li class="nav-item">
-                  <a class="nav-link" href="#!/about">About</a>
-                </li>
-
-              </ul>
-            </div>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header><!-- header close -->
+  <!-- header close -->
   <!-- Add your site or application content here -->
 
 
@@ -124,6 +84,7 @@
   <script src="scripts/controllers/voyage.js"></script>
   <script src="scripts/controllers/settings.js"></script>
   <script src="scripts/controllers/about.js"></script>
+  <script src="scripts/controllers/header.js"></script>
   <script src="scripts/controllers/footer.js"></script>
   <!-- endbuild -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.3/owl.carousel.min.js"></script>
@@ -137,7 +98,7 @@
 
       /*initSqlJs().then(function(SQL) {
         var db = new SQL.Database();
-        console.log("initSqlJS"); 
+        console.log("initSqlJS");
       });
 */
       /*
@@ -164,7 +125,17 @@
           itemsDesktopSmall: [979, 5],
         });
         */
+      console.log("here");
+      $("#navbarSupportedContent").on('show.bs.collapse hide.bs.collapse', function(e) {
+          console.log(e.type + " collapse");
+      });
+
       $("#lion").tooltip();
+      if($(".navbar-collapse").hasClass("in")) {
+         console.log("!!!collapse in click!!!");
+         $('[data-toggle="collapse"]').click();
+      }
+
       //           $("#myTooltips p").tooltip({container: ".wrapper"});
       //           $("#myTooltips i").tooltip({
       //            container: ".myWrapper"

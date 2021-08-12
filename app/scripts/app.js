@@ -140,7 +140,7 @@ angular
             scope.height = $window.innerHeight;
 
             function onResize() {
-                console.log($window.innerWidth);
+                console.log("xwindow:" + $window.innerWidth);
                 // uncomment for only fire when $window.innerWidth change   
                 if (scope.width !== $window.innerWidth) {
                     scope.width = $window.innerWidth;

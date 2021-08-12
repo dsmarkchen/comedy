@@ -1,0 +1,61 @@
+<header ng-controller="HeaderCtrl">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-12">
+            <p> menuIndice: {{menuIndice}}       </p>
+            <p> navbar open: {{nav_open}}       </p>
+            <p> navbar isCollapsed: {{isCollapsed}}       </p>
+
+            <nav class="navbar navbar-expand-lg bg-light navbar-light">
+              <div class="container" collapse-listener="">
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                  Comedy<span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item" ng-class="menuIndice == 1 ? 'active':''"><a class="nav-link nav" ng-click="menuIndice= 1" href="#!canto">Canto</a></li>
+                    <li class="nav-item" ng-class="menuIndice == 2 ? 'active':''"><a class="nav-link nav" ng-click="menuIndice= 2" href="#!notes">Notes</a></li>
+                    <li class="nav-item" ng-class="menuIndice == 3 ? 'active':''"><a class="nav-link nav" ng-click="menuIndice= 3" href="#!settings">Settings</a></li>
+                    <li class="nav-item" ng-class="menuIndice == 4 ? 'active':''"><a class="nav-link nav" ng-click="menuIndice= 4" href="#!about">About</a></li>
+
+                  </ul>
+                </div>
+              </div>
+            </nav>
+
+
+            <!-- header Nav Start -->
+            <nav class="navbar navbar-expand-md bg-light navbar-light" ng-hide="true">
+              <a class="navbar-brand" href="#"><h4>Comedy</h4></a>
+              <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#defaultNavbar" aria-expanded="{{isCollapse}}" aria-controls="navbarsDefault" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="navbar-collapse" ng-class="isCollapsed ? 'collapse' : 'in'" id="defaultNavbar">
+                <ul class="navbar-nav">
+                  <li class="nav-item" ng-class="menuIndice == 1 ? 'active':''">
+                    <a class="nav-link" ng-click="menuIndice= 1; callapse_navbar()" href="#!canto">Canto</a>
+                  </li>
+                  <li class="nav-item" ng-class="menuIndice == 2 ? 'active':''">
+                    <a class="nav-link" ng-click="menuIndice=2; callapse_navbar()" href="#!notes">Notes</a>
+                  </li>
+                  <li class="nav-item" ng-class="menuIndice == 3 ? 'active':''">
+                    <a class="nav-link" ng-click="menuIndice=3;  callapse_navbar()" href="#!settings">Settings</a>
+                  </li>
+                  <li class="nav-item" ng-class="menuIndice == 4 ? 'active':''">
+                    <a class="nav-link" ng-click="menuIndice = 4; callapse_navbar()" href="#!about">About</a>
+                  </li>
+                </ul>
+              </div>
+            </nav>
+
+
+
+
+
+
+          </div>
+        </div>
+      </div>
+</header>
+
