@@ -9,12 +9,17 @@
  */
 angular.module('comedyApp')
     .controller('SettingsCtrl', function ($scope, comedyService, fileReader) {
-
-        $scope.opt = localStorage.getItem("comedyOpt");
-        if ($scope.opt == null) {
-            $scope.opt = "inferno";
-            localStorage.setItem("comedyOpt", $scope.opt);
+        $scope.comedyService = comedyService;
+        $scope.verbose = comedyService.getVerbose();
+        $scope.chk_verbose = $scope.verbose;
+        
+        $scope.changeVerbose = function () {
+            $scope.verbose = $scope.chk_verbose;
+            comedyService.setVerbose($scope.verbose);
+            
         }
+        $scope.opt = comedyService.getBook();
+        $scope.input_opt = $scope.opt;
         
         $scope.items2 = [
             {
@@ -33,7 +38,8 @@ angular.module('comedyApp')
         $scope.comments = ["comment 1", "comment2", "", ""]; 
 
         $scope.change = function () {
-            comedyService.opt($scope.opt);
+            comedyService.opt($scope.input_opt);
+            $scope.opt = comedyService.getBook();
             comedyService.lines([]);
         }
 
@@ -70,16 +76,7 @@ angular.module('comedyApp')
         $scope.$on("fileProgress", function (e, progress) {
             $scope.progress = progress.loaded / progress.total;
         });
-        $scope.$watch('comedyService.lines', function (newValue, oldValue) {
-            if (oldValue != newValue) {
-                $scope.lines = newValue;
-            }
-        });
-        $scope.$watch('comedyService.opt', function (newValue, oldValue) {
-            if (oldValue != newValue) {
-                $scope.opt = newValue;
-            }
-        });
+       
 
     })
     .directive("ngFileSelect", function () {

@@ -10,7 +10,11 @@
  * navbar menu: open or close
  */
 angular.module('comedyApp')
-    .controller('HeaderCtrl', function ($scope, $location) {
+    .controller('HeaderCtrl', function ($scope, $location, comedyService) {
+        $scope.comedyService = comedyService;
+        $scope.verbose = comedyService.getVerbose();
+        
+
         $scope.nav_open = true;
         $scope.isNavCollapsed = true; /* button is on*/
 
@@ -50,11 +54,7 @@ angular.module('comedyApp')
 
 
         }
-        $scope.opt = localStorage.getItem("comedyOpt");
-        if ($scope.opt == null) {
-            $scope.opt = "inferno";
-            localStorage.setItem("comedyOpt", $scope.opt);
-        }
+        $scope.opt = comedyService.getBook();
 
 
 
@@ -62,11 +62,18 @@ angular.module('comedyApp')
             console.log("routechangeSuccuss:  isCollapsed:" + $scope.isCollapsed);
 
         });
-        /*
-        $scope.on('show.bs.collapse hide.bs.collapse', function (e) {
-            console.log(e.type + " collapse");
-        });
-        */
+        
+        $scope.$watch(function () {
+            return {
+                verbose: comedyService.getVerbose(),
+                opt: comedyService.getBook(),
+            }
+        }, function (newVal, oldVal) {
+            $scope.verbose = newVal.verbose;
+
+            $scope.opt = newVal.opt;
+        }, true);
+        
 
 
 

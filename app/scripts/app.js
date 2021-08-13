@@ -10,22 +10,40 @@ angular
         'ngTouch'
     ])
     .service('comedyService', function ($http, $log) {
+        var _verbose = false;
+        var _opt = "";
+        var _initVerbose = function () {
+            _verbose = localStorage.getItem("comedyVerbose");
+            if (_verbose == null || _verbose == undefined) {
+                _verbose = false;
+            }
+            else {
+                _verbose = JSON.parse(_verbose);
+            }
+        };
+        var _initBook = function () {
+            var cmdyOpt = localStorage.getItem("comedyOpt");
+            if (cmdyOpt == null || cmdyOpt == undefined) {
+                _opt = "inferno";
+            }
+            else {
+                _opt = cmdyOpt;
+            }
+        }
+        _initVerbose();
+        _initBook();
+        $log.log("comedyService.opt: " + _opt);
         var lines = [];
         var rawlines = [];
 
         var temp = [];
         var counter = 0;
-        var opt = "inferno";
-        var cmdyOpt = localStorage.getItem("comedyOpt");
-        if (cmdyOpt != null) {
-            opt = cmdyOpt;
-        }
-        $log.log("comedyService.opt: " + opt);
-        var cmdyRaws = localStorage.getItem("comedyRawlines" + opt);
+        
+        var cmdyRaws = localStorage.getItem("comedyRawlines" + _opt);
         if (cmdyRaws != null) {
             rawlines = cmdyRaws;
         }
-        var cmdyLines = localStorage.getItem("comedyLines" + opt);
+        var cmdyLines = localStorage.getItem("comedyLines" + _opt);
         if (cmdyLines != null && cmdyLines != "") {
             lines = cmdyLines;
         }
@@ -70,8 +88,8 @@ angular
             if (lines.length > 0) {
                 lines.push({ line: counter - 1, text: rawlines.join('<br>') });
             }
-            localStorage.setItem("comedyLines" + opt, JSON.stringify(lines));
-            localStorage.setItem("comedyLinesCount" + opt, lines.length * 3);
+            localStorage.setItem("comedyLines" + _opt, JSON.stringify(lines));
+            localStorage.setItem("comedyLinesCount" + _opt, lines.length * 3);
             $log.log("comedyService.linesCountInferno: " + lines.length * 3);
 
         };
@@ -89,12 +107,35 @@ angular
 
         return {
             opt: function (newopt) {
-                if (opt != newopt) {
-                    opt = newopt;
-                    localStorage.setItem("comedyOpt", opt);
-                }
-                return opt;
+                if (_opt != newopt) {
+                    _opt = newopt;
+                    localStorage.setItem("comedyOpt", _opt);
+                }                
             },
+            getBook: function () {
+                if (_opt == null || _opt == undefined) {
+                    _initBook();
+                }
+                return _opt;
+            },
+
+            initBook: function () {
+                _initBook();
+            },
+            initVerbose: function () {
+                _initVerbose();
+            },
+
+            getVerbose: function () {
+                return _verbose;
+            },
+            setVerbose: function (newVal) {
+                if (_verbose != newVal) {
+                    _verbose = newVal;
+                    localStorage.setItem("comedyVerbose", _verbose);
+                }
+            },
+
             lines: function (newLines) {
                 if (lines != newLines) {
                     lines = newLines;
@@ -105,7 +146,7 @@ angular
                 _makelines();
             },
             feedme: function () {
-                return _feedme(opt);
+                return _feedme(_opt);
             },
             rawlines: function (newLines) {
                 if (rawlines != newLines) {

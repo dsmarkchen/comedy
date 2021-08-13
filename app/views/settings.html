@@ -4,6 +4,8 @@
       <div class="row">
         <div class="col-md-12">
           <h2> Settings </h2>
+
+          <label>Verbose: <input type="checkbox" ng-model="chk_verbose" ng-init="verbose" ng-change="changeVerbose()"></label><br />
         </div>
       </div>
 
@@ -18,7 +20,7 @@
 
           <div class="form-check form-check-inline">
 
-            <input class="form-check-input" type="radio" ng-model="opt" value="inferno" ng-change="change()">
+            <input class="form-check-input" type="radio" ng-model="input_opt" value="inferno" ng-change="change()">
 
             <label class="form-check-label">inferno</label>
 
@@ -28,7 +30,7 @@
 
           <div class="form-check form-check-inline">
 
-            <input class="form-check-input" type="radio" ng-model="opt" value="purgatorio" ng-change="change()">
+            <input class="form-check-input" type="radio" ng-model="input_opt" value="purgatorio" ng-change="change()">
 
             <label class="form-check-label">purgatorio</label>
 
@@ -38,7 +40,7 @@
 
           <div class="form-check form-check-inline">
 
-            <input class="form-check-input" type="radio" ng-model="opt" value="paradiso" ng-change="change()">
+            <input class="form-check-input" type="radio" ng-model="input_opt" value="paradiso" ng-change="change()">
 
             <label class="form-check-label">paradiso</label>
 

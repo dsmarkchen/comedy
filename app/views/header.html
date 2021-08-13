@@ -2,14 +2,18 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12">
-            <p> menuIndice: {{menuIndice}}       </p>
-            <p> navbar open: {{nav_open}}       </p>
-            <p> navbar isCollapsed: {{isCollapsed}}       </p>
-
+            <div ng-if="verbose">
+              <p> verbose: {{verbose}}       </p>
+              <p> book: {{opt}}       </p>
+              <p> menuIndice: {{menuIndice}}       </p>
+              <p> navbar open: {{nav_open}}       </p>
+              <p> navbar isCollapsed: {{isCollapsed}}       </p>
+            </div>
             <nav class="navbar navbar-expand-lg bg-light navbar-light">
               <div class="container" collapse-listener="">
+                <a class="navbar-brand" href="#"><h4>Comedy</h4></a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                  Comedy<span class="navbar-toggler-icon"></span>
+                  <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                   <ul class="navbar-nav ml-auto">
