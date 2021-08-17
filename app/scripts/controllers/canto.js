@@ -21,9 +21,9 @@ angular.module('comedyApp')
 
             };
             $scope.notes.push(item);
-            localStorage.setItem("comedyNotes", JSON.stringify($scope.notes));            
+            localStorage.setItem("comedyNotes", JSON.stringify($scope.notes));
         }
-        $scope.showSelectedWords = function (canto) {            
+        $scope.showSelectedWords = function (canto) {
             $scope.selectedBookIndex = $scope.opt + ", " + canto.name + "," + canto.line;
             $scope.selectedWords = $scope.getWordsSelected();
         };
@@ -44,7 +44,7 @@ angular.module('comedyApp')
         $scope.selectedWord = "";
         $scope.selectedText = "";
 
-        
+
 
 
         $scope.myQuery =  localStorage.getItem("myQuery");
@@ -69,7 +69,7 @@ angular.module('comedyApp')
                 $scope.lines = comedyService.lines;
             });
         }
-        
+
 
         var step = 3;
         $scope.move = function () {
@@ -130,17 +130,28 @@ angular.module('comedyApp')
             step = 3;
             $scope.move();
 
-        }    
+        }
         $scope.change = function () {
             comedyService.opt($scope.opt);
             localStorage.setItem("myCantoOpt", $scope.opt);
+
+           var cmdylines = JSON.parse(localStorage.getItem("comedyLines" + $scope.opt));
+           if (cmdylines != null) {
+              $scope.lines = cmdylines;
+          }
+          else {
+            comedyService.feedme().then(function success(rsp) {
+                $scope.lines = comedyService.lines;
+            });
+          }
+
         }
         $scope.getComedylines = function () {
             return comedyService.lines;
         }
         $scope.$watch('comedyService.rawlines', function (newValue, oldValue) {
             if (oldValue != newValue) {
-                $scope.rawlines = newValue;                
+                $scope.rawlines = newValue;
                 localStorage.setItem("myRawlines", $scope.rawlines);
             }
         });
@@ -153,7 +164,7 @@ angular.module('comedyApp')
         $scope.$watch('comedyService.lines', function (newValue, oldValue) {
             if (oldValue != newValue) {
                 $scope.lines = newValue;
-            }            
+            }
         });
         $scope.$watch('comedyService.opt', function (newValue, oldValue) {
             if (oldValue != newValue) {
@@ -162,7 +173,7 @@ angular.module('comedyApp')
         });
 
     })
-   
+
     .filter('noteFilter', function () {
         return function (comments, query) {
             var filtered = [];
